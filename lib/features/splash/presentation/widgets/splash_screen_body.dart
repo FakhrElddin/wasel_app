@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:wasel_app/config/app_routes.dart';
 import 'package:wasel_app/core/utils/app_Strings.dart';
 import 'package:wasel_app/core/utils/app_images.dart';
 import 'package:wasel_app/core/utils/app_styles.dart';
@@ -45,8 +46,8 @@ class _ProfessionalSplashScreenState extends State<SplashScreenBody>
 
     _animationController.forward();
 
-    Timer(const Duration(milliseconds: 4000), () {
-      // navigate to home
+    Timer(const Duration(milliseconds: 3000), () {
+      Navigator.pushReplacementNamed(context, AppRoutes.onboardingScreenRoute);
     });
   }
 
