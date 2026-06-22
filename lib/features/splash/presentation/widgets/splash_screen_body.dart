@@ -2,7 +2,9 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:wasel_app/config/app_routes.dart';
+import 'package:wasel_app/core/cache/shared_prefs_utils.dart';
 import 'package:wasel_app/core/utils/app_Strings.dart';
+import 'package:wasel_app/core/utils/app_constants.dart';
 import 'package:wasel_app/core/utils/app_images.dart';
 import 'package:wasel_app/core/utils/app_styles.dart';
 
@@ -19,6 +21,8 @@ class _ProfessionalSplashScreenState extends State<SplashScreenBody>
 
   late Animation<Offset> _logoSlideAnimation;
   late Animation<double> _logoFadeAnimation;
+  bool? showOnboardingScreen =
+      SharedPrefsUtils.getData(key: AppConstants.onboarding) as bool?;
 
   @override
   void initState() {
@@ -47,7 +51,12 @@ class _ProfessionalSplashScreenState extends State<SplashScreenBody>
     _animationController.forward();
 
     Timer(const Duration(milliseconds: 3000), () {
-      Navigator.pushReplacementNamed(context, AppRoutes.onboardingScreenRoute);
+      Navigator.pushReplacementNamed(
+        context,
+        showOnboardingScreen == null
+            ? AppRoutes.onboardingScreenRoute
+            : AppRoutes.loginScreenRoute,
+      );
     });
   }
 

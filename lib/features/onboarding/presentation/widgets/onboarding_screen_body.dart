@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:wasel_app/config/app_routes.dart';
+import 'package:wasel_app/core/cache/shared_prefs_utils.dart';
 import 'package:wasel_app/core/utils/app_Strings.dart';
 import 'package:wasel_app/core/utils/app_colors.dart';
+import 'package:wasel_app/core/utils/app_constants.dart';
 import 'package:wasel_app/core/utils/app_images.dart';
 import 'package:wasel_app/features/onboarding/model/onboarding_model.dart';
 import 'package:wasel_app/features/onboarding/presentation/widgets/boarding_item.dart';
@@ -70,13 +73,12 @@ class _OnboardingScreenBodyState extends State<OnboardingScreenBody> {
               FloatingActionButton(
                 heroTag: 'btn1',
                 onPressed: () {
-                  if (isFirst) {
-                  } else {
+                  if (isFirst == false) {
                     boardingController.previousPage(
                       duration: const Duration(milliseconds: 750),
                       curve: Curves.fastLinearToSlowEaseIn,
                     );
-                  }
+                  } else {}
                 },
                 child: const Icon(
                   Icons.arrow_back,
@@ -103,7 +105,15 @@ class _OnboardingScreenBodyState extends State<OnboardingScreenBody> {
                       duration: const Duration(milliseconds: 750),
                       curve: Curves.fastLinearToSlowEaseIn,
                     );
-                  } else {}
+                  } else {
+                    SharedPrefsUtils.saveData(
+                      key: AppConstants.onboarding,
+                      value: false,
+                    );
+                    Navigator.pushReplacementNamed(
+                      context, AppRoutes.loginScreenRoute,
+                    );
+                  }
                 },
                 child: const Icon(
                   Icons.arrow_forward,
