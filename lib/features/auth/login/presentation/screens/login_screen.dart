@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:wasel_app/features/login/presentation/widgets/login_screen_body.dart';
+import 'package:wasel_app/features/auth/login/presentation/widgets/login_screen_body.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});

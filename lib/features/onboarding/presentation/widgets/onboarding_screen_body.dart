@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:wasel_app/config/app_routes.dart';
 import 'package:wasel_app/core/cache/shared_prefs_utils.dart';
-import 'package:wasel_app/core/utils/app_Strings.dart';
+import 'package:wasel_app/core/utils/app_strings.dart';
 import 'package:wasel_app/core/utils/app_colors.dart';
 import 'package:wasel_app/core/utils/app_constants.dart';
 import 'package:wasel_app/core/utils/app_images.dart';
