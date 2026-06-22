@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wasel_app/core/utils/app_colors.dart';
+import 'package:wasel_app/core/utils/app_styles.dart';
 
 class CustomTextButton extends StatelessWidget {
   const CustomTextButton({super.key, required this.text, this.onPressed});
@@ -18,7 +19,7 @@ class CustomTextButton extends StatelessWidget {
       ),
       child: Text(
         text,
-        style: const TextStyle(color: AppColors.whiteColor, fontSize: 24),
+        style: AppStyles.regular24Text,
       ),
     );
   }

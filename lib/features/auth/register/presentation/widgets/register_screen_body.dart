@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:wasel_app/config/app_routes.dart';
 import 'package:wasel_app/core/components/custom_text_button.dart';
 import 'package:wasel_app/core/components/custom_text_form_field.dart';
 import 'package:wasel_app/core/utils/app_colors.dart';
@@ -8,18 +7,20 @@ import 'package:wasel_app/core/utils/app_strings.dart';
 import 'package:wasel_app/core/utils/app_styles.dart';
 import 'package:wasel_app/core/utils/app_validators.dart';
 
-class LoginScreenBody extends StatefulWidget {
-  const LoginScreenBody({super.key});
+class RegisterScreenBody extends StatefulWidget {
+  const RegisterScreenBody({super.key});
 
   @override
-  State<LoginScreenBody> createState() => _LoginScreenBodyState();
+  State<RegisterScreenBody> createState() => _RegisterScreenBodyState();
 }
 
-class _LoginScreenBodyState extends State<LoginScreenBody> {
+class _RegisterScreenBodyState extends State<RegisterScreenBody> {
   GlobalKey<FormState> formKey = GlobalKey();
   AutovalidateMode autoValidateMode = AutovalidateMode.disabled;
+  TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  TextEditingController confirmPasswordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -42,22 +43,50 @@ class _LoginScreenBodyState extends State<LoginScreenBody> {
                   ),
                   const SizedBox(height: 50),
                   CustomTextFormField(
+                    controller: nameController,
+                    textInputAction: TextInputAction.next,
+                    labelText: 'Name',
+                    hintText: 'Enter Your Name',
+                    textInputType: TextInputType.name,
+                    validator: AppValidators.validateUsername,
+                  ),
+                  const SizedBox(height: 16),
+                  CustomTextFormField(
+                    controller: emailController,
                     textInputAction: TextInputAction.next,
                     labelText: 'Email',
-                    hintText: 'user@gmail.com',
-                    controller: emailController,
+                    hintText: 'Enter Your Email',
                     textInputType: TextInputType.emailAddress,
                     validator: AppValidators.validateEmail,
-                    onFieldSubmitted: (value) {},
                   ),
-                  const SizedBox(height: 24),
+                  const SizedBox(height: 16),
                   CustomTextFormField(
-                    textInputAction: TextInputAction.done,
-                    textInputType: TextInputType.visiblePassword,
-                    labelText: 'Password',
-                    hintText: 'Enter Your Password',
                     controller: passwordController,
-                    validator: AppValidators.validate,
+                    textInputAction: TextInputAction.done,
+                    labelText: 'Password',
+                    hintText: 'Enter Password',
+                    validator: AppValidators.validatePassword,
+                    isPassword: true,
+                    suffixIcon: IconButton(
+                      onPressed: () {},
+                      icon: Icon(
+                        Icons.visibility_off,
+                        color: AppColors.primaryColor,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  CustomTextFormField(
+                    controller: confirmPasswordController,
+                    textInputAction: TextInputAction.done,
+                    labelText: 'Confirm Password',
+                    hintText: 'Enter Same Password',
+                    validator: (value) {
+                      AppValidators.validateConfirmPassword(
+                        value,
+                        passwordController.text,
+                      );
+                    },
                     isPassword: true,
                     suffixIcon: IconButton(
                       onPressed: () {},
@@ -67,26 +96,21 @@ class _LoginScreenBodyState extends State<LoginScreenBody> {
                       ),
                     ),
                     onFieldSubmitted: (value) {
-                      if (emailController.text.trim().isEmpty ||
-                          passwordController.text.trim().isEmpty) {
-                      } else {}
+                      if (nameController.text.trim().isEmpty ||
+                          emailController.text.trim().isEmpty ||
+                          passwordController.text.trim().isEmpty ||
+                          confirmPasswordController.text.trim().isEmpty) {
+                      } else {
+                        if (formKey.currentState!.validate()) {}
+                      }
                     },
                   ),
-                  const SizedBox(height: 8),
-                  TextButton(
-                    onPressed: () {},
-                    child: Text(
-                      'Forget password?',
-                      style: AppStyles.regular16Text.copyWith(
-                        color: AppColors.greyColor,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 8),
+                  const SizedBox(height: 32),
                   CustomTextButton(
-                    text: 'Log In',
+                    text: 'Register',
                     onPressed: () {
-                      if (formKey.currentState!.validate()) {}
+                      if (formKey.currentState!.validate()) {
+                      } else {}
                     },
                   ),
                   const SizedBox(height: 24),
@@ -94,19 +118,19 @@ class _LoginScreenBodyState extends State<LoginScreenBody> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        "Don't have an account?",
+                        'Have account?',
                         style: AppStyles.regular18Text.copyWith(
                           color: AppColors.blackColor,
                         ),
                       ),
                       TextButton(
                         onPressed: () {
-                          Navigator.pushNamed(
-                            context,
-                            AppRoutes.registerScreenRoute,
-                          );
+                          Navigator.pop(context);
                         },
-                        child: Text('Sign Up', style: AppStyles.regular18Text),
+                        child: Text(
+                          'Login Now',
+                          style: AppStyles.regular18Text,
+                        ),
                       ),
                     ],
                   ),

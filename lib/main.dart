@@ -3,6 +3,7 @@ import 'package:wasel_app/config/app_routes.dart';
 import 'package:wasel_app/config/app_theme.dart';
 import 'package:wasel_app/core/cache/shared_prefs_utils.dart';
 import 'package:wasel_app/features/auth/login/presentation/screens/login_screen.dart';
+import 'package:wasel_app/features/auth/register/presentation/screens/register_screen.dart';
 import 'package:wasel_app/features/onboarding/presentation/screens/onboarding_screen.dart';
 
 import 'features/splash/presentation/screens/splash_screen.dart';
@@ -25,6 +26,7 @@ class WaselApp extends StatelessWidget {
         AppRoutes.splashScreenRoute: (context) => SplashScreen(),
         AppRoutes.onboardingScreenRoute: (context) => OnboardingScreen(),
         AppRoutes.loginScreenRoute: (context) => LoginScreen(),
+        AppRoutes.registerScreenRoute: (context) => RegisterScreen(),
       },
       initialRoute: AppRoutes.splashScreenRoute,
     );
