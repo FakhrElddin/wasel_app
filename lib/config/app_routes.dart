@@ -5,4 +5,5 @@ class AppRoutes {
   static const String registerScreenRoute = 'registerRoute';
   static const String forgetPasswordScreenRoute = 'forgetPasswordRoute';
   static const String verifyCodeScreenRoute = 'verifyCodeRoute';
+  static const String resetPasswordScreenRoute = 'resetPasswordCodeRoute';
 }

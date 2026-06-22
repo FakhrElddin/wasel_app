@@ -14,15 +14,15 @@ class AppStrings {
   static const String emailHintString = 'Enter Your Email';
   static const String passwordString = 'Password';
   static const String passwordHintString = 'Enter Your Password';
-  static const String confirmPasswordString = 'Enter Same Password';
-  static const String confirmPasswordHintString = 'Enter Your Password';
+  static const String confirmPasswordString = 'Confirm Password';
+  static const String confirmPasswordHintString = 'Enter Same Password';
   static const String loginString = 'Log In';
   static const String loginNowString = 'Login Now';
   static const String signupString = 'Sign Up';
   static const String registerString = 'Register';
   static const String dontHaveAnAccountString = "Don't have an account";
   static const String sendCodeString = "Send Code";
-  static const String backToLoginString = "Back to login?";
+  static const String backToLoginString = "Back To Login?";
   static const String haveAccountString = "Have account?";
   static const String nameString = 'Name';
   static const String nameHintString = 'Enter Your Name';
@@ -30,6 +30,10 @@ class AppStrings {
   static const String enter6DigitCodeBodyString = 'Enter the 6 digits code that you received on your email.';
   static const String confirmCodeString = 'Confirm Code';
   static const String enterAnotherEmailString = 'Enter another email?';
+  static const String resetPasswordString = 'Reset Password';
+  static const String resetPasswordBodyString = 'Set the new password for your account so you can login and access all the features.';
+  static const String newPasswordString = 'New Password';
+  static const String newPasswordHintString = 'Enter New Password';
 
 
 }

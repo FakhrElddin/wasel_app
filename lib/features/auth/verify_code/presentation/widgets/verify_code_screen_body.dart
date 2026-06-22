@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
+import 'package:wasel_app/config/app_routes.dart';
 import 'package:wasel_app/core/components/custom_text_button.dart';
 import 'package:wasel_app/core/utils/app_colors.dart';
 import 'package:wasel_app/core/utils/app_images.dart';
@@ -76,6 +77,10 @@ class _VerifyCodeScreenBodyState extends State<VerifyCodeScreenBody> {
                 CustomTextButton(
                   text: AppStrings.confirmCodeString,
                   onPressed: () {
+                    Navigator.pushNamed(
+                      context,
+                      AppRoutes.resetPasswordScreenRoute,
+                    );
                     if (formKey.currentState!.validate()) {
                     } else {}
                   },
