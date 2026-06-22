@@ -7,5 +7,25 @@ class AppStrings {
   static const String onboarding2Body = 'Explore a virtual haven for bookworms with our app—browse, discover, and purchase your favorite reads anytime, anywhere';
   static const String onboarding3Title = 'Exchange';
   static const String onboarding3Body = 'Users can chat with each other to exchange their books';
+  static const String forgetPasswordString = 'Forget Password';
+  static const String forgetPasswordButtonString = 'Forget Password?';
+  static const String forgetPasswordBodyString = 'Enter your email for the verification process, we will send 6 digits code to your email.';
+  static const String emailString = 'Email';
+  static const String emailHintString = 'Enter Your Email';
+  static const String passwordString = 'Password';
+  static const String passwordHintString = 'Enter Your Password';
+  static const String confirmPasswordString = 'Enter Same Password';
+  static const String confirmPasswordHintString = 'Enter Your Password';
+  static const String loginString = 'Log In';
+  static const String loginNowString = 'Login Now';
+  static const String signupString = 'Sign Up';
+  static const String registerString = 'Register';
+  static const String dontHaveAnAccountString = "Don't have an account";
+  static const String sendCodeString = "Send Code";
+  static const String backToLoginString = "Back to login?";
+  static const String haveAccountString = "Have account?";
+  static const String nameString = 'Name';
+  static const String nameHintString = 'Enter Your Name';
+
 
 }

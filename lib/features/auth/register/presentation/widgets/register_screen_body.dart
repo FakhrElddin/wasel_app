@@ -45,8 +45,8 @@ class _RegisterScreenBodyState extends State<RegisterScreenBody> {
                   CustomTextFormField(
                     controller: nameController,
                     textInputAction: TextInputAction.next,
-                    labelText: 'Name',
-                    hintText: 'Enter Your Name',
+                    labelText: AppStrings.nameString,
+                    hintText: AppStrings.nameHintString,
                     textInputType: TextInputType.name,
                     validator: AppValidators.validateUsername,
                   ),
@@ -54,8 +54,8 @@ class _RegisterScreenBodyState extends State<RegisterScreenBody> {
                   CustomTextFormField(
                     controller: emailController,
                     textInputAction: TextInputAction.next,
-                    labelText: 'Email',
-                    hintText: 'Enter Your Email',
+                    labelText: AppStrings.emailString,
+                    hintText: AppStrings.emailHintString,
                     textInputType: TextInputType.emailAddress,
                     validator: AppValidators.validateEmail,
                   ),
@@ -63,8 +63,8 @@ class _RegisterScreenBodyState extends State<RegisterScreenBody> {
                   CustomTextFormField(
                     controller: passwordController,
                     textInputAction: TextInputAction.done,
-                    labelText: 'Password',
-                    hintText: 'Enter Password',
+                    labelText:  AppStrings.passwordString,
+                    hintText:  AppStrings.passwordHintString,
                     validator: AppValidators.validatePassword,
                     isPassword: true,
                     suffixIcon: IconButton(
@@ -79,8 +79,8 @@ class _RegisterScreenBodyState extends State<RegisterScreenBody> {
                   CustomTextFormField(
                     controller: confirmPasswordController,
                     textInputAction: TextInputAction.done,
-                    labelText: 'Confirm Password',
-                    hintText: 'Enter Same Password',
+                    labelText: AppStrings.confirmPasswordString,
+                    hintText: AppStrings.confirmPasswordHintString,
                     validator: (value) {
                       AppValidators.validateConfirmPassword(
                         value,
@@ -107,7 +107,7 @@ class _RegisterScreenBodyState extends State<RegisterScreenBody> {
                   ),
                   const SizedBox(height: 32),
                   CustomTextButton(
-                    text: 'Register',
+                    text: AppStrings.registerString,
                     onPressed: () {
                       if (formKey.currentState!.validate()) {
                       } else {}
@@ -118,7 +118,7 @@ class _RegisterScreenBodyState extends State<RegisterScreenBody> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'Have account?',
+                        AppStrings.haveAccountString,
                         style: AppStyles.regular18Text.copyWith(
                           color: AppColors.blackColor,
                         ),
@@ -128,7 +128,7 @@ class _RegisterScreenBodyState extends State<RegisterScreenBody> {
                           Navigator.pop(context);
                         },
                         child: Text(
-                          'Login Now',
+                          AppStrings.loginNowString,
                           style: AppStyles.regular18Text,
                         ),
                       ),

@@ -6,6 +6,7 @@ import 'package:wasel_app/features/auth/login/presentation/screens/login_screen.
 import 'package:wasel_app/features/auth/register/presentation/screens/register_screen.dart';
 import 'package:wasel_app/features/onboarding/presentation/screens/onboarding_screen.dart';
 
+import 'features/auth/forget_password/presentation/screens/forget_password_screen.dart';
 import 'features/splash/presentation/screens/splash_screen.dart';
 
 void main() async{
@@ -27,6 +28,7 @@ class WaselApp extends StatelessWidget {
         AppRoutes.onboardingScreenRoute: (context) => OnboardingScreen(),
         AppRoutes.loginScreenRoute: (context) => LoginScreen(),
         AppRoutes.registerScreenRoute: (context) => RegisterScreen(),
+        AppRoutes.forgetPasswordScreenRoute: (context) => ForgetPasswordScreen(),
       },
       initialRoute: AppRoutes.splashScreenRoute,
     );

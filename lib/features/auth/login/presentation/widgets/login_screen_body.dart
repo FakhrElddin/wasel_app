@@ -43,8 +43,8 @@ class _LoginScreenBodyState extends State<LoginScreenBody> {
                   const SizedBox(height: 50),
                   CustomTextFormField(
                     textInputAction: TextInputAction.next,
-                    labelText: 'Email',
-                    hintText: 'user@gmail.com',
+                    labelText: AppStrings.emailString,
+                    hintText: AppStrings.emailHintString,
                     controller: emailController,
                     textInputType: TextInputType.emailAddress,
                     validator: AppValidators.validateEmail,
@@ -54,8 +54,8 @@ class _LoginScreenBodyState extends State<LoginScreenBody> {
                   CustomTextFormField(
                     textInputAction: TextInputAction.done,
                     textInputType: TextInputType.visiblePassword,
-                    labelText: 'Password',
-                    hintText: 'Enter Your Password',
+                    labelText: AppStrings.passwordString,
+                    hintText: AppStrings.passwordHintString,
                     controller: passwordController,
                     validator: AppValidators.validate,
                     isPassword: true,
@@ -74,9 +74,14 @@ class _LoginScreenBodyState extends State<LoginScreenBody> {
                   ),
                   const SizedBox(height: 8),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(
+                        context,
+                        AppRoutes.forgetPasswordScreenRoute,
+                      );
+                    },
                     child: Text(
-                      'Forget password?',
+                      AppStrings.forgetPasswordButtonString,
                       style: AppStyles.regular16Text.copyWith(
                         color: AppColors.greyColor,
                       ),
@@ -84,7 +89,7 @@ class _LoginScreenBodyState extends State<LoginScreenBody> {
                   ),
                   const SizedBox(height: 8),
                   CustomTextButton(
-                    text: 'Log In',
+                    text: AppStrings.loginString,
                     onPressed: () {
                       if (formKey.currentState!.validate()) {}
                     },
@@ -94,7 +99,7 @@ class _LoginScreenBodyState extends State<LoginScreenBody> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        "Don't have an account?",
+                        AppStrings.dontHaveAnAccountString,
                         style: AppStyles.regular18Text.copyWith(
                           color: AppColors.blackColor,
                         ),
@@ -106,7 +111,10 @@ class _LoginScreenBodyState extends State<LoginScreenBody> {
                             AppRoutes.registerScreenRoute,
                           );
                         },
-                        child: Text('Sign Up', style: AppStyles.regular18Text),
+                        child: Text(
+                          AppStrings.signupString,
+                          style: AppStyles.regular18Text,
+                        ),
                       ),
                     ],
                   ),
