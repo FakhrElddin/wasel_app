@@ -9,4 +9,17 @@ class AppStyles {
     letterSpacing: 30,
     color: AppColors.primaryColor,
   );
+  static TextStyle bold14Text = GoogleFonts.poppins(
+    fontSize: 14,
+    fontWeight: FontWeight.bold,
+    color: AppColors.primaryColor,
+  );
+  static TextStyle bold24Text = GoogleFonts.poppins(
+    fontSize: 24,
+    fontWeight: FontWeight.bold,
+  );
+  static TextStyle regular16Text = GoogleFonts.poppins(
+    fontSize: 16,
+    fontWeight: FontWeight.w400,
+  );
 }
