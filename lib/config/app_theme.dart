@@ -8,5 +8,13 @@ class AppTheme {
     appBarTheme: AppBarTheme(
       backgroundColor: AppColors.whiteColor,
     ),
+    floatingActionButtonTheme: FloatingActionButtonThemeData(
+      backgroundColor: AppColors.primaryColor,
+    ),
+    textButtonTheme: TextButtonThemeData(
+      style: TextButton.styleFrom(
+        overlayColor: AppColors.primaryColor.withValues(alpha: 0.3),
+      ),
+    ),
   );
 }

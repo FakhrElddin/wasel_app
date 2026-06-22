@@ -12,11 +12,14 @@ class OnboardingScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         actions: [
-          TextButton(
-            onPressed: () {},
-            child: Text(
-              AppStrings.skipStringCapital,
-              style: AppStyles.bold14Text,
+          Padding(
+            padding: const EdgeInsets.only(right: 16.0),
+            child: TextButton(
+              onPressed: () {},
+              child: Text(
+                AppStrings.skipStringCapital,
+                style: AppStyles.bold14Text,
+              ),
             ),
           ),
         ],
