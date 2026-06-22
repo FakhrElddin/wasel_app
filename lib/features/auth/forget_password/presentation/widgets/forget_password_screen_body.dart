@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wasel_app/config/app_routes.dart';
 import 'package:wasel_app/core/components/custom_text_button.dart';
 import 'package:wasel_app/core/components/custom_text_form_field.dart';
 import 'package:wasel_app/core/utils/app_colors.dart';
@@ -16,7 +17,7 @@ class ForgetPasswordScreenBody extends StatefulWidget {
 }
 
 class _ForgetPasswordScreenBodyState extends State<ForgetPasswordScreenBody> {
-  static TextEditingController emailController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
   GlobalKey<FormState> formKey = GlobalKey();
   AutovalidateMode autoValidateMode = AutovalidateMode.disabled;
 
@@ -24,8 +25,7 @@ class _ForgetPasswordScreenBodyState extends State<ForgetPasswordScreenBody> {
   Widget build(BuildContext context) {
     return AbsorbPointer(
       absorbing: false,
-      child: Scaffold(
-        body: Padding(
+      child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Center(
             child: SingleChildScrollView(
@@ -67,8 +67,9 @@ class _ForgetPasswordScreenBodyState extends State<ForgetPasswordScreenBody> {
                     CustomTextButton(
                       text: AppStrings.sendCodeString,
                       onPressed: () {
-                        if (formKey.currentState!.validate()) {
-                        } else {}
+                        Navigator.pushNamed(context, AppRoutes.verifyCodeScreenRoute);
+                        // if (formKey.currentState!.validate()) {
+                        // } else {}
                       },
                     ),
                     const SizedBox(height: 24),
@@ -89,7 +90,6 @@ class _ForgetPasswordScreenBodyState extends State<ForgetPasswordScreenBody> {
             ),
           ),
         ),
-      ),
-    );
+      );
   }
 }

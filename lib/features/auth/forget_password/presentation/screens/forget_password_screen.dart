@@ -7,6 +7,8 @@ class ForgetPasswordScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ForgetPasswordScreenBody();
+    return const Scaffold(
+      body: ForgetPasswordScreenBody(),
+    );
   }
 }

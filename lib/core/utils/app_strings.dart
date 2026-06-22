@@ -26,6 +26,10 @@ class AppStrings {
   static const String haveAccountString = "Have account?";
   static const String nameString = 'Name';
   static const String nameHintString = 'Enter Your Name';
+  static const String enter6DigitCodeString = 'Enter 6 Digits Code';
+  static const String enter6DigitCodeBodyString = 'Enter the 6 digits code that you received on your email.';
+  static const String confirmCodeString = 'Confirm Code';
+  static const String enterAnotherEmailString = 'Enter another email?';
 
 
 }
