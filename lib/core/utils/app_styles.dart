@@ -9,4 +9,9 @@ class AppStyles {
     letterSpacing: 30,
     color: AppColors.primaryColor,
   );
+  static TextStyle bold14Text = GoogleFonts.poppins(
+    fontSize: 14,
+    fontWeight: FontWeight.bold,
+    color: AppColors.primaryColor,
+  );
 }

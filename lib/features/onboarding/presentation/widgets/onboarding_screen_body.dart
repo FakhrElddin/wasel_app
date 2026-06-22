@@ -8,3 +8,4 @@ class OnboardingScreenBody extends StatelessWidget {
     return const Placeholder();
   }
 }
+
