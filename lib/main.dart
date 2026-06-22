@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:wasel_app/config/app_routes.dart';
 import 'package:wasel_app/config/app_theme.dart';
+import 'package:wasel_app/features/onboarding/presentation/screens/onboarding_screen.dart';
 
 import 'features/splash/presentation/screens/splash_screen.dart';
 
@@ -18,6 +19,7 @@ class WaselApp extends StatelessWidget {
       theme: AppTheme.lightTheme,
       routes: {
         AppRoutes.splashScreenRoute: (context) => SplashScreen(),
+        AppRoutes.onboardingScreenRoute: (context) => OnboardingScreen(),
       },
       initialRoute: AppRoutes.splashScreenRoute,
     );

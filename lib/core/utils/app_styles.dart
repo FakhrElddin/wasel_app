@@ -1,1 +1,12 @@
-class AppStyles {}
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:wasel_app/core/utils/app_colors.dart';
+
+class AppStyles {
+  static TextStyle bold38Text = GoogleFonts.poppins(
+    fontSize: 38,
+    fontWeight: FontWeight.bold,
+    letterSpacing: 30,
+    color: AppColors.primaryColor,
+  );
+}
