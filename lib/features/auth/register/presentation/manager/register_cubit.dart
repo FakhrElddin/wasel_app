@@ -4,16 +4,19 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:wasel_app/features/auth/register/domain/use_cases/register_use_case.dart';
+import 'package:wasel_app/features/auth/register/domain/use_cases/verify_otp_use_case.dart';
 import 'package:wasel_app/features/auth/register/presentation/manager/register_states.dart';
 
 @injectable
 class RegisterCubit extends Cubit<RegisterStates> {
-  RegisterCubit({required this.registerUseCase})
-    : super(RegisterInitialState());
+  RegisterCubit({required this.registerUseCase, required this.verifyOtpUseCase})
+      : super(RegisterInitialState());
 
   RegisterUseCase registerUseCase;
+  VerifyOtpUseCase verifyOtpUseCase;
 
   GlobalKey<FormState> formKey = GlobalKey();
+  GlobalKey<FormState> verifyOtpFormKey = GlobalKey();
   AutovalidateMode autoValidateMode = AutovalidateMode.disabled;
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
@@ -36,12 +39,27 @@ class RegisterCubit extends Cubit<RegisterStates> {
         confirmPassword: confirmPasswordController.text,
       );
       either.fold(
-        (failure) => emit(RegisterErrorState(failure: failure)),
-        (response) => emit(RegisterSuccessState(registerResponse: response)),
+            (failure) => emit(RegisterErrorState(failure: failure)),
+            (response) =>
+            emit(RegisterSuccessState(registerResponse: response)),
       );
     } else {
       changeAutoValidateMode();
     }
+  }
+
+  void verifyOtp() async {
+      emit(VerifyOtpLoadingState());
+      var either = await verifyOtpUseCase.invoke(
+        email: emailController.text,
+        otp: pinController.text,
+      );
+      either.fold(
+            (failure) => emit(VerifyOtpErrorState(failure: failure)),
+            (response) =>
+            emit(VerifyOtpSuccessState(response: response)),
+      );
+
   }
 
   void changeVisibility({

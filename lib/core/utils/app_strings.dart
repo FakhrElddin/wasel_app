@@ -36,6 +36,7 @@ class AppStrings {
   static const String newPasswordHintString = 'Enter New Password';
   static const String errorStringCapital = 'ERROR';
   static const String successStringCapital = 'SUCCESS';
+  static const String congratulationsMessageString = 'Congratulations, Account Created Successfully';
 
 
 }

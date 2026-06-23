@@ -20,6 +20,8 @@ import '../../features/auth/register/domain/repositories/register_repository.dar
     as _i57;
 import '../../features/auth/register/domain/use_cases/register_use_case.dart'
     as _i118;
+import '../../features/auth/register/domain/use_cases/verify_otp_use_case.dart'
+    as _i741;
 import '../../features/auth/register/presentation/manager/register_cubit.dart'
     as _i208;
 import '../api/api_manager.dart' as _i1047;
@@ -47,8 +49,16 @@ extension GetItInjectableX on _i174.GetIt {
         registerRepository: gh<_i57.RegisterRepository>(),
       ),
     );
+    gh.factory<_i741.VerifyOtpUseCase>(
+      () => _i741.VerifyOtpUseCase(
+        registerRepository: gh<_i57.RegisterRepository>(),
+      ),
+    );
     gh.factory<_i208.RegisterCubit>(
-      () => _i208.RegisterCubit(registerUseCase: gh<_i118.RegisterUseCase>()),
+      () => _i208.RegisterCubit(
+        registerUseCase: gh<_i118.RegisterUseCase>(),
+        verifyOtpUseCase: gh<_i741.VerifyOtpUseCase>(),
+      ),
     );
     return this;
   }

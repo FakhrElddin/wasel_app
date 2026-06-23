@@ -3,6 +3,7 @@ import 'package:injectable/injectable.dart';
 import 'package:wasel_app/core/errors/failures.dart';
 import 'package:wasel_app/features/auth/register/data/data_sources/remote_data_source/register_remote_data_source.dart';
 import 'package:wasel_app/features/auth/register/domain/entities/register_response_entity.dart';
+import 'package:wasel_app/features/auth/register/domain/entities/verify_otp_response_entity.dart';
 import 'package:wasel_app/features/auth/register/domain/repositories/register_repository.dart';
 
 @Injectable(as: RegisterRepository)
@@ -24,6 +25,15 @@ class RegisterRepositoryImpl implements RegisterRepository {
       password: password,
       confirmPassword: confirmPassword,
     );
+    return either.fold((error) => Left(error), (response) => Right(response));
+  }
+
+  @override
+  Future<Either<Failures, VerifyOtpResponseEntity>> verifyOtp({
+    required String email,
+    required String otp,
+  }) async {
+    var either = await remoteDataSource.verifyOtp(email: email, otp: otp);
     return either.fold((error) => Left(error), (response) => Right(response));
   }
 }
