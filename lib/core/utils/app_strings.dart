@@ -34,6 +34,8 @@ class AppStrings {
   static const String resetPasswordBodyString = 'Set the new password for your account so you can login and access all the features.';
   static const String newPasswordString = 'New Password';
   static const String newPasswordHintString = 'Enter New Password';
+  static const String errorStringCapital = 'ERROR';
+  static const String successStringCapital = 'SUCCESS';
 
 
 }

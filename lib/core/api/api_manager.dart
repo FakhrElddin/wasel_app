@@ -1,6 +1,8 @@
 import 'package:dio/dio.dart';
+import 'package:injectable/injectable.dart';
 import 'package:wasel_app/core/api/api_constants.dart';
 
+@singleton
 class ApiManager {
   final dio = Dio();
 
