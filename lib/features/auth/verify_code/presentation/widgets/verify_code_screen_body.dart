@@ -88,7 +88,10 @@ class _VerifyCodeScreenBodyState extends State<VerifyCodeScreenBody> {
                 const SizedBox(height: 24),
                 TextButton(
                   onPressed: () {
-                    Navigator.pop(context);
+                    Navigator.pushReplacementNamed(
+                      context,
+                      AppRoutes.forgetPasswordScreenRoute,
+                    );
                   },
                   child: Text(
                     AppStrings.enterAnotherEmailString,

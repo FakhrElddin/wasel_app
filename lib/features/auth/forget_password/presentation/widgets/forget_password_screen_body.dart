@@ -1,12 +1,18 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wasel_app/config/app_routes.dart';
 import 'package:wasel_app/core/components/custom_text_button.dart';
 import 'package:wasel_app/core/components/custom_text_form_field.dart';
+import 'package:wasel_app/core/di/di.dart';
 import 'package:wasel_app/core/utils/app_colors.dart';
 import 'package:wasel_app/core/utils/app_images.dart';
 import 'package:wasel_app/core/utils/app_strings.dart';
 import 'package:wasel_app/core/utils/app_styles.dart';
 import 'package:wasel_app/core/utils/app_validators.dart';
+import 'package:wasel_app/core/utils/dialog_utils.dart';
+import 'package:wasel_app/features/auth/forget_password/presentation/manager/forget_password_cubit.dart';
+import 'package:wasel_app/features/auth/forget_password/presentation/manager/forget_password_states.dart';
 
 class ForgetPasswordScreenBody extends StatefulWidget {
   const ForgetPasswordScreenBody({super.key});
@@ -17,21 +23,36 @@ class ForgetPasswordScreenBody extends StatefulWidget {
 }
 
 class _ForgetPasswordScreenBodyState extends State<ForgetPasswordScreenBody> {
-  TextEditingController emailController = TextEditingController();
-  GlobalKey<FormState> formKey = GlobalKey();
-  AutovalidateMode autoValidateMode = AutovalidateMode.disabled;
+  ForgetPasswordCubit viewModel = getIt<ForgetPasswordCubit>();
 
   @override
   Widget build(BuildContext context) {
-    return AbsorbPointer(
-      absorbing: false,
-      child: Padding(
+    return BlocConsumer<ForgetPasswordCubit, ForgetPasswordStates>(
+      bloc: viewModel,
+      listener: (context, state) {
+        if (state is ForgetPasswordErrorState) {
+          DialogUtils.showAwSomeDialog(
+            context: context,
+            title: AppStrings.errorStringCapital,
+            description: state.failure.errorMessage,
+            dialogType: DialogType.error,
+            btnOkOnPress: (){},
+          );
+        } else if (state is ForgetPasswordSuccessState) {
+          Navigator.pushReplacementNamed(
+            context,
+            AppRoutes.verifyCodeScreenRoute,
+          );
+        }
+      },
+      builder: (context, state) {
+        return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Center(
             child: SingleChildScrollView(
               child: Form(
-                key: formKey,
-                autovalidateMode: autoValidateMode,
+                key: viewModel.formKey,
+                autovalidateMode: viewModel.autoValidateMode,
                 child: Column(
                   children: [
                     Image.asset(AppImages.logoImage, width: 180, height: 180),
@@ -55,21 +76,23 @@ class _ForgetPasswordScreenBodyState extends State<ForgetPasswordScreenBody> {
                     ),
                     const SizedBox(height: 50),
                     CustomTextFormField(
-                      controller: emailController,
+                      controller: viewModel.emailController,
                       textInputAction: TextInputAction.done,
                       labelText: AppStrings.emailString,
                       hintText: AppStrings.emailHintString,
                       textInputType: TextInputType.emailAddress,
                       validator: AppValidators.validateEmail,
-                      onFieldSubmitted: (value) {},
                     ),
                     const SizedBox(height: 24),
-                    CustomTextButton(
+                    state is ForgetPasswordLoadingState ? Center(
+                      child: CircularProgressIndicator(
+                        color: AppColors.primaryColor,
+                      ),
+                    )
+                        : CustomTextButton(
                       text: AppStrings.sendCodeString,
                       onPressed: () {
-                        Navigator.pushNamed(context, AppRoutes.verifyCodeScreenRoute);
-                        // if (formKey.currentState!.validate()) {
-                        // } else {}
+                        viewModel.forgetPassword();
                       },
                     ),
                     const SizedBox(height: 24),
@@ -89,7 +112,8 @@ class _ForgetPasswordScreenBodyState extends State<ForgetPasswordScreenBody> {
               ),
             ),
           ),
-        ),
-      );
+        );
+      },
+    );
   }
 }

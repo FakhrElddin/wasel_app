@@ -12,6 +12,16 @@
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
+import '../../features/auth/forget_password/data/data_sources/remote_data_source/forget_password_remote_data_source.dart'
+    as _i1045;
+import '../../features/auth/forget_password/data/repositories/forget_password_repository_impl.dart'
+    as _i584;
+import '../../features/auth/forget_password/domain/repositories/forget_password_repository.dart'
+    as _i974;
+import '../../features/auth/forget_password/domain/use_cases/forget_password_use_case.dart'
+    as _i913;
+import '../../features/auth/forget_password/presentation/manager/forget_password_cubit.dart'
+    as _i454;
 import '../../features/auth/login/data/data_sources/remote_data_source/login_remote_data_source.dart'
     as _i529;
 import '../../features/auth/login/data/repositories/login_repository_impl.dart'
@@ -52,6 +62,16 @@ extension GetItInjectableX on _i174.GetIt {
       () =>
           _i529.LoginRemoteDataSourceImpl(apiManager: gh<_i1047.ApiManager>()),
     );
+    gh.factory<_i1045.ForgetPasswordRemoteDataSource>(
+      () => _i1045.ForgetPasswordRemoteDataSourceImpl(
+        apiManager: gh<_i1047.ApiManager>(),
+      ),
+    );
+    gh.factory<_i974.ForgetPasswordRepository>(
+      () => _i584.ForgetPasswordRepositoryImpl(
+        remoteDataSource: gh<_i1045.ForgetPasswordRemoteDataSource>(),
+      ),
+    );
     gh.factory<_i57.RegisterRepository>(
       () => _i200.RegisterRepositoryImpl(
         remoteDataSource: gh<_i549.RegisterRemoteDataSource>(),
@@ -74,6 +94,16 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i50.LoginUseCase>(
       () => _i50.LoginUseCase(loginRepository: gh<_i176.LoginRepository>()),
+    );
+    gh.factory<_i913.ForgetPasswordUseCase>(
+      () => _i913.ForgetPasswordUseCase(
+        forgetPasswordRepository: gh<_i974.ForgetPasswordRepository>(),
+      ),
+    );
+    gh.factory<_i454.ForgetPasswordCubit>(
+      () => _i454.ForgetPasswordCubit(
+        forgetPasswordUseCase: gh<_i913.ForgetPasswordUseCase>(),
+      ),
     );
     gh.factory<_i208.RegisterCubit>(
       () => _i208.RegisterCubit(
