@@ -37,6 +37,6 @@ class AppStrings {
   static const String errorStringCapital = 'ERROR';
   static const String successStringCapital = 'SUCCESS';
   static const String congratulationsMessageString = 'Congratulations, Account Created Successfully';
-
+  static const String codeString = 'code';
 
 }

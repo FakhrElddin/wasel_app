@@ -42,6 +42,7 @@ class _ForgetPasswordScreenBodyState extends State<ForgetPasswordScreenBody> {
           Navigator.pushReplacementNamed(
             context,
             AppRoutes.verifyCodeScreenRoute,
+            arguments: viewModel.emailController.text,
           );
         }
       },

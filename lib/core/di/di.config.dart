@@ -43,6 +43,16 @@ import '../../features/auth/register/domain/use_cases/verify_otp_use_case.dart'
     as _i741;
 import '../../features/auth/register/presentation/manager/register_cubit.dart'
     as _i208;
+import '../../features/auth/verify_code/data/data_sources/remote_data_source/verify_code_remote_data_source.dart'
+    as _i1052;
+import '../../features/auth/verify_code/data/repositories/verify_code_repository_impl.dart'
+    as _i787;
+import '../../features/auth/verify_code/domain/repositories/verify_code_repository.dart'
+    as _i650;
+import '../../features/auth/verify_code/domain/use_cases/verify_code_use_case.dart'
+    as _i109;
+import '../../features/auth/verify_code/presentation/manager/verify_code_cubit.dart'
+    as _i40;
 import '../api/api_manager.dart' as _i1047;
 
 extension GetItInjectableX on _i174.GetIt {
@@ -72,9 +82,19 @@ extension GetItInjectableX on _i174.GetIt {
         remoteDataSource: gh<_i1045.ForgetPasswordRemoteDataSource>(),
       ),
     );
+    gh.factory<_i1052.VerifyCodeRemoteDataSource>(
+      () => _i1052.VerifyCodeRemoteDataSourceImpl(
+        apiManager: gh<_i1047.ApiManager>(),
+      ),
+    );
     gh.factory<_i57.RegisterRepository>(
       () => _i200.RegisterRepositoryImpl(
         remoteDataSource: gh<_i549.RegisterRemoteDataSource>(),
+      ),
+    );
+    gh.factory<_i650.VerifyCodeRepository>(
+      () => _i787.VerifyCodeRepositoryImpl(
+        remoteDataSource: gh<_i1052.VerifyCodeRemoteDataSource>(),
       ),
     );
     gh.factory<_i118.RegisterUseCase>(
@@ -87,9 +107,19 @@ extension GetItInjectableX on _i174.GetIt {
         registerRepository: gh<_i57.RegisterRepository>(),
       ),
     );
+    gh.factory<_i109.VerifyCodeUseCase>(
+      () => _i109.VerifyCodeUseCase(
+        verifyCodeRepository: gh<_i650.VerifyCodeRepository>(),
+      ),
+    );
     gh.factory<_i176.LoginRepository>(
       () => _i470.LoginRepositoryImpl(
         remoteDataSource: gh<_i529.LoginRemoteDataSource>(),
+      ),
+    );
+    gh.factory<_i40.VerifyCodeCubit>(
+      () => _i40.VerifyCodeCubit(
+        verifyCodeUseCase: gh<_i109.VerifyCodeUseCase>(),
       ),
     );
     gh.factory<_i50.LoginUseCase>(

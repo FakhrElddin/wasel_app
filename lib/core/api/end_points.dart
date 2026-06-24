@@ -3,6 +3,6 @@ class EndPoints {
   static const String verifyOtpEndPoint = 'api/v1/auth/verifyOTP';
   static const String loginEndPoint = 'api/v1/auth/login';
   static const String forgetPasswordEndPoint = 'api/v1/auth/forgetPassword';
-  static const String resetCodeEndPoint = 'api/v1/auth/verifyResetCode';
+  static const String verifyResetCodeEndPoint = 'api/v1/auth/verifyResetCode';
   static const String resetPasswordEndPoint = 'api/v1/auth/resetPassword';
 }
