@@ -59,4 +59,18 @@ class ApiManager {
       options: Options(validateStatus: (status) => true, headers: headers),
     );
   }
+
+  Future<Response> patchData({
+    required String endPoint,
+    Object? data,
+    Map<String, dynamic>? queryParameters,
+    Map<String, dynamic>? headers,
+  }) {
+    return dio.patch(
+      ApiConstants.baseUrl + endPoint,
+      data: data,
+      queryParameters: queryParameters,
+      options: Options(validateStatus: (status) => true, headers: headers),
+    );
+  }
 }
