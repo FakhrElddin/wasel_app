@@ -3,16 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wasel_app/config/app_routes.dart';
 import 'package:wasel_app/core/components/custom_text_button.dart';
-import 'package:wasel_app/core/components/custom_text_form_field.dart';
 import 'package:wasel_app/core/di/di.dart';
 import 'package:wasel_app/core/utils/app_colors.dart';
-import 'package:wasel_app/core/utils/app_images.dart';
 import 'package:wasel_app/core/utils/app_strings.dart';
 import 'package:wasel_app/core/utils/app_styles.dart';
-import 'package:wasel_app/core/utils/app_validators.dart';
 import 'package:wasel_app/core/utils/dialog_utils.dart';
 import 'package:wasel_app/features/auth/login/presentation/manager/login_cubit.dart';
 import 'package:wasel_app/features/auth/login/presentation/manager/login_states.dart';
+import 'package:wasel_app/features/auth/login/presentation/widgets/logo_section.dart';
+import 'package:wasel_app/features/auth/login/presentation/widgets/register_section.dart';
+import 'package:wasel_app/features/auth/login/presentation/widgets/text_fields_section.dart';
 
 class LoginScreenBody extends StatefulWidget {
   const LoginScreenBody({super.key});
@@ -35,9 +35,9 @@ class _LoginScreenBodyState extends State<LoginScreenBody> {
             title: AppStrings.errorStringCapital,
             description: state.failure.errorMessage,
             dialogType: DialogType.error,
-            btnOkOnPress: (){},
+            btnOkOnPress: () {},
           );
-        } else if (state is LoginSuccessState){
+        } else if (state is LoginSuccessState) {
           // navigate to home
         }
       },
@@ -52,43 +52,9 @@ class _LoginScreenBodyState extends State<LoginScreenBody> {
                 physics: const BouncingScrollPhysics(),
                 child: Column(
                   children: [
-                    Image.asset(AppImages.logoImage, width: 180, height: 180),
-                    Text(
-                      AppStrings.waselStringCapital,
-                      style: AppStyles.bold38Text,
-                    ),
+                    const LogoSection(),
                     const SizedBox(height: 50),
-                    CustomTextFormField(
-                      textInputAction: TextInputAction.next,
-                      labelText: AppStrings.emailString,
-                      hintText: AppStrings.emailHintString,
-                      controller: viewModel.emailController,
-                      textInputType: TextInputType.emailAddress,
-                      validator: AppValidators.validateEmail,
-                    ),
-                    const SizedBox(height: 24),
-                    CustomTextFormField(
-                      textInputAction: TextInputAction.done,
-                      textInputType: TextInputType.visiblePassword,
-                      labelText: AppStrings.passwordString,
-                      hintText: AppStrings.passwordHintString,
-                      controller: viewModel.passwordController,
-                      validator: AppValidators.validate,
-                      isPassword: viewModel.isPassword,
-                      suffixIcon: IconButton(
-                        onPressed: () {
-                          viewModel.changeVisibility(
-                            isPassword: !viewModel.isPassword,
-                          );
-                        },
-                        icon: Icon(
-                          viewModel.isPassword
-                              ? Icons.visibility_off
-                              : Icons.visibility,
-                          color: AppColors.primaryColor,
-                        ),
-                      ),
-                    ),
+                    TextFieldsSection(viewModel: viewModel),
                     const SizedBox(height: 8),
                     TextButton(
                       onPressed: () {
@@ -106,41 +72,18 @@ class _LoginScreenBodyState extends State<LoginScreenBody> {
                       ),
                     ),
                     const SizedBox(height: 8),
-                    state is LoginLoadingState ? Center(
-                      child: CircularProgressIndicator(
-                        color: AppColors.primaryColor,
-                      ),
-                    )
+                    state is LoginLoadingState
+                        ? Center(
+                            child: CircularProgressIndicator(),
+                          )
                         : CustomTextButton(
-                      text: AppStrings.loginString,
-                      onPressed: () {
-                        viewModel.login();
-                      },
-                    ),
+                            text: AppStrings.loginString,
+                            onPressed: () {
+                              viewModel.login();
+                            },
+                          ),
                     const SizedBox(height: 24),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          AppStrings.dontHaveAnAccountString,
-                          style: AppStyles.regular18Text.copyWith(
-                            color: AppColors.blackColor,
-                          ),
-                        ),
-                        TextButton(
-                          onPressed: () {
-                            Navigator.pushNamed(
-                              context,
-                              AppRoutes.registerScreenRoute,
-                            );
-                          },
-                          child: Text(
-                            AppStrings.signupString,
-                            style: AppStyles.regular18Text,
-                          ),
-                        ),
-                      ],
-                    ),
+                    const RegisterSection(),
                   ],
                 ),
               ),

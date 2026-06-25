@@ -16,5 +16,8 @@ class AppTheme {
         overlayColor: AppColors.primaryColor.withValues(alpha: 0.3),
       ),
     ),
+    progressIndicatorTheme: ProgressIndicatorThemeData(
+      color: AppColors.primaryColor,
+    ),
   );
 }
