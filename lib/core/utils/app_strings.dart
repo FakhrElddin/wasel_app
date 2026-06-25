@@ -39,6 +39,8 @@ class AppStrings {
   static const String accountCreatedSuccessfullyString = 'Congratulations, Account Created Successfully';
   static const String codeString = 'code';
   static const String passwordChangedSuccessfullyString = 'Congratulations, Password Changed Successfully';
+  static const String btn1String = 'btn1';
+  static const String btn2String = 'btn2';
 
 
 }
