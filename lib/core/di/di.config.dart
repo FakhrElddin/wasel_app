@@ -43,6 +43,16 @@ import '../../features/auth/register/domain/use_cases/verify_otp_use_case.dart'
     as _i741;
 import '../../features/auth/register/presentation/manager/register_cubit.dart'
     as _i208;
+import '../../features/auth/reset_password/data/data_sources/remote_data_source/reset_password_remote_data_source.dart'
+    as _i314;
+import '../../features/auth/reset_password/data/repositories/reset_password_repository_impl.dart'
+    as _i1018;
+import '../../features/auth/reset_password/domain/repositories/reset_password_repository.dart'
+    as _i606;
+import '../../features/auth/reset_password/domain/use_cases/reset_password_use_case.dart'
+    as _i698;
+import '../../features/auth/reset_password/presentation/manager/reset_password_cubit.dart'
+    as _i964;
 import '../../features/auth/verify_code/data/data_sources/remote_data_source/verify_code_remote_data_source.dart'
     as _i1052;
 import '../../features/auth/verify_code/data/repositories/verify_code_repository_impl.dart'
@@ -63,6 +73,11 @@ extension GetItInjectableX on _i174.GetIt {
   }) {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
     gh.singleton<_i1047.ApiManager>(() => _i1047.ApiManager());
+    gh.factory<_i314.ResetPasswordRemoteDataSource>(
+      () => _i314.ResetPasswordRemoteDataSourceImpl(
+        apiManager: gh<_i1047.ApiManager>(),
+      ),
+    );
     gh.factory<_i549.RegisterRemoteDataSource>(
       () => _i549.RegisterRemoteDataSourceImpl(
         apiManager: gh<_i1047.ApiManager>(),
@@ -85,6 +100,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i1052.VerifyCodeRemoteDataSource>(
       () => _i1052.VerifyCodeRemoteDataSourceImpl(
         apiManager: gh<_i1047.ApiManager>(),
+      ),
+    );
+    gh.factory<_i606.ResetPasswordRepository>(
+      () => _i1018.ResetPasswordRepositoryImpl(
+        remoteDataSource: gh<_i314.ResetPasswordRemoteDataSource>(),
       ),
     );
     gh.factory<_i57.RegisterRepository>(
@@ -128,6 +148,16 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i913.ForgetPasswordUseCase>(
       () => _i913.ForgetPasswordUseCase(
         forgetPasswordRepository: gh<_i974.ForgetPasswordRepository>(),
+      ),
+    );
+    gh.factory<_i698.ResetPasswordUseCase>(
+      () => _i698.ResetPasswordUseCase(
+        resetPasswordRepository: gh<_i606.ResetPasswordRepository>(),
+      ),
+    );
+    gh.factory<_i964.ResetPasswordCubit>(
+      () => _i964.ResetPasswordCubit(
+        resetPasswordUseCase: gh<_i698.ResetPasswordUseCase>(),
       ),
     );
     gh.factory<_i454.ForgetPasswordCubit>(

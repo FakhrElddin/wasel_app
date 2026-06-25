@@ -33,7 +33,7 @@ class VerifyOtpBottomSheet extends StatelessWidget {
           DialogUtils.showAwSomeDialog(
             context: context,
             title: AppStrings.successStringCapital,
-            description: AppStrings.congratulationsMessageString,
+            description: AppStrings.accountCreatedSuccessfullyString,
             dialogType: DialogType.success,
             dismissOnTouchOutside: false,
             dismissOnBackKeyPress: false,
