@@ -2,19 +2,17 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wasel_app/core/components/custom_text_button.dart';
-import 'package:wasel_app/core/components/custom_text_form_field.dart';
 import 'package:wasel_app/core/di/di.dart';
-import 'package:wasel_app/core/utils/app_colors.dart';
-import 'package:wasel_app/core/utils/app_images.dart';
 import 'package:wasel_app/core/utils/app_strings.dart';
-import 'package:wasel_app/core/utils/app_styles.dart';
-import 'package:wasel_app/core/utils/app_validators.dart';
 import 'package:wasel_app/core/utils/bottom_sheet_utils.dart';
 import 'package:wasel_app/core/utils/dialog_utils.dart';
+import 'package:wasel_app/features/auth/login/presentation/widgets/logo_section.dart';
 import 'package:wasel_app/features/auth/register/presentation/manager/register_cubit.dart';
 import 'package:wasel_app/features/auth/register/presentation/manager/register_states.dart';
+import 'package:wasel_app/features/auth/register/presentation/widgets/login_section.dart';
+import 'package:wasel_app/features/auth/register/presentation/widgets/text_fields_section.dart';
+import 'package:wasel_app/features/auth/register/presentation/widgets/verify_otp_bottom_sheet.dart';
 
-import 'verify_otp_bottom_sheet.dart';
 
 class RegisterScreenBody extends StatefulWidget {
   const RegisterScreenBody({super.key});
@@ -57,87 +55,12 @@ class _RegisterScreenBodyState extends State<RegisterScreenBody> {
                 physics: const BouncingScrollPhysics(),
                 child: Column(
                   children: [
-                    Image.asset(AppImages.logoImage, width: 180, height: 180),
-                    Text(
-                      AppStrings.waselStringCapital,
-                      style: AppStyles.bold38Text,
-                    ),
+                    LogoSection(),
                     const SizedBox(height: 50),
-                    CustomTextFormField(
-                      controller: viewModel.nameController,
-                      textInputAction: TextInputAction.next,
-                      labelText: AppStrings.nameString,
-                      hintText: AppStrings.nameHintString,
-                      textInputType: TextInputType.name,
-                      validator: AppValidators.validateUsername,
-                    ),
-                    const SizedBox(height: 16),
-                    CustomTextFormField(
-                      controller: viewModel.emailController,
-                      textInputAction: TextInputAction.next,
-                      labelText: AppStrings.emailString,
-                      hintText: AppStrings.emailHintString,
-                      textInputType: TextInputType.emailAddress,
-                      validator: AppValidators.validateEmail,
-                    ),
-                    const SizedBox(height: 16),
-                    CustomTextFormField(
-                      controller: viewModel.passwordController,
-                      textInputAction: TextInputAction.done,
-                      labelText: AppStrings.passwordString,
-                      hintText: AppStrings.passwordHintString,
-                      validator: AppValidators.validatePassword,
-                      isPassword: viewModel.firstIsPassword,
-                      suffixIcon: IconButton(
-                        onPressed: () {
-                          viewModel.changeVisibility(
-                            isFirstField: true,
-                            isPassword: !viewModel.firstIsPassword,
-                          );
-                        },
-                        icon: Icon(
-                          viewModel.firstIsPassword
-                              ? Icons.visibility_off
-                              : Icons.visibility,
-                          color: AppColors.primaryColor,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 16),
-                    CustomTextFormField(
-                      controller: viewModel.confirmPasswordController,
-                      textInputAction: TextInputAction.done,
-                      labelText: AppStrings.confirmPasswordString,
-                      hintText: AppStrings.confirmPasswordHintString,
-                      validator: (value) {
-                        return AppValidators.validateConfirmPassword(
-                          value,
-                          viewModel.passwordController.text,
-                        );
-                      },
-                      isPassword: viewModel.secondIsPassword,
-                      suffixIcon: IconButton(
-                        onPressed: () {
-                          viewModel.changeVisibility(
-                            isFirstField: false,
-                            isPassword: !viewModel.secondIsPassword,
-                          );
-                        },
-                        icon: Icon(
-                          viewModel.secondIsPassword
-                              ? Icons.visibility_off
-                              : Icons.visibility,
-                          color: AppColors.primaryColor,
-                        ),
-                      ),
-                    ),
+                    TextFieldsSection(viewModel: viewModel),
                     const SizedBox(height: 32),
                     state is RegisterLoadingState
-                        ? Center(
-                            child: CircularProgressIndicator(
-                              color: AppColors.primaryColor,
-                            ),
-                          )
+                        ? Center(child: CircularProgressIndicator())
                         : CustomTextButton(
                             text: AppStrings.registerString,
                             onPressed: () {
@@ -145,26 +68,7 @@ class _RegisterScreenBodyState extends State<RegisterScreenBody> {
                             },
                           ),
                     const SizedBox(height: 24),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          AppStrings.haveAccountString,
-                          style: AppStyles.regular18Text.copyWith(
-                            color: AppColors.blackColor,
-                          ),
-                        ),
-                        TextButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          child: Text(
-                            AppStrings.loginNowString,
-                            style: AppStyles.regular18Text,
-                          ),
-                        ),
-                      ],
-                    ),
+                    LoginSection(),
                   ],
                 ),
               ),
