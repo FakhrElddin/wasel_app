@@ -6,13 +6,14 @@ import 'package:wasel_app/core/components/custom_text_button.dart';
 import 'package:wasel_app/core/components/custom_text_form_field.dart';
 import 'package:wasel_app/core/di/di.dart';
 import 'package:wasel_app/core/utils/app_colors.dart';
-import 'package:wasel_app/core/utils/app_images.dart';
 import 'package:wasel_app/core/utils/app_strings.dart';
 import 'package:wasel_app/core/utils/app_styles.dart';
 import 'package:wasel_app/core/utils/app_validators.dart';
 import 'package:wasel_app/core/utils/dialog_utils.dart';
 import 'package:wasel_app/features/auth/forget_password/presentation/manager/forget_password_cubit.dart';
 import 'package:wasel_app/features/auth/forget_password/presentation/manager/forget_password_states.dart';
+import 'package:wasel_app/features/auth/forget_password/presentation/widgets/hint_section.dart';
+import 'package:wasel_app/features/auth/login/presentation/widgets/logo_section.dart';
 
 class ForgetPasswordScreenBody extends StatefulWidget {
   const ForgetPasswordScreenBody({super.key});
@@ -36,7 +37,7 @@ class _ForgetPasswordScreenBodyState extends State<ForgetPasswordScreenBody> {
             title: AppStrings.errorStringCapital,
             description: state.failure.errorMessage,
             dialogType: DialogType.error,
-            btnOkOnPress: (){},
+            btnOkOnPress: () {},
           );
         } else if (state is ForgetPasswordSuccessState) {
           Navigator.pushReplacementNamed(
@@ -56,25 +57,9 @@ class _ForgetPasswordScreenBodyState extends State<ForgetPasswordScreenBody> {
                 autovalidateMode: viewModel.autoValidateMode,
                 child: Column(
                   children: [
-                    Image.asset(AppImages.logoImage, width: 180, height: 180),
-                    Text(
-                      AppStrings.waselStringCapital,
-                      style: AppStyles.bold38Text,
-                    ),
+                    LogoSection(),
                     const SizedBox(height: 50),
-                    Row(
-                      children: [
-                        Text(
-                          AppStrings.forgetPasswordString,
-                          style: AppStyles.bold24Text,
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      AppStrings.forgetPasswordBodyString,
-                      style: AppStyles.regular16Text,
-                    ),
+                    HintSection(),
                     const SizedBox(height: 50),
                     CustomTextFormField(
                       controller: viewModel.emailController,
@@ -85,17 +70,14 @@ class _ForgetPasswordScreenBodyState extends State<ForgetPasswordScreenBody> {
                       validator: AppValidators.validateEmail,
                     ),
                     const SizedBox(height: 24),
-                    state is ForgetPasswordLoadingState ? Center(
-                      child: CircularProgressIndicator(
-                        color: AppColors.primaryColor,
-                      ),
-                    )
+                    state is ForgetPasswordLoadingState
+                        ? Center(child: CircularProgressIndicator())
                         : CustomTextButton(
-                      text: AppStrings.sendCodeString,
-                      onPressed: () {
-                        viewModel.forgetPassword();
-                      },
-                    ),
+                            text: AppStrings.sendCodeString,
+                            onPressed: () {
+                              viewModel.forgetPassword();
+                            },
+                          ),
                     const SizedBox(height: 24),
                     TextButton(
                       onPressed: () {
