@@ -7,5 +7,40 @@ class AppStrings {
   static const String onboarding2Body = 'Explore a virtual haven for bookworms with our app—browse, discover, and purchase your favorite reads anytime, anywhere';
   static const String onboarding3Title = 'Exchange';
   static const String onboarding3Body = 'Users can chat with each other to exchange their books';
+  static const String forgetPasswordString = 'Forget Password';
+  static const String forgetPasswordButtonString = 'Forget Password?';
+  static const String forgetPasswordBodyString = 'Enter your email for the verification process, we will send 6 digits code to your email.';
+  static const String emailString = 'Email';
+  static const String emailHintString = 'Enter Your Email';
+  static const String passwordString = 'Password';
+  static const String passwordHintString = 'Enter Your Password';
+  static const String confirmPasswordString = 'Confirm Password';
+  static const String confirmPasswordHintString = 'Enter Same Password';
+  static const String loginString = 'Log In';
+  static const String loginNowString = 'Login Now';
+  static const String signupString = 'Sign Up';
+  static const String registerString = 'Register';
+  static const String dontHaveAnAccountString = "Don't have an account";
+  static const String sendCodeString = "Send Code";
+  static const String backToLoginString = "Back To Login?";
+  static const String haveAccountString = "Have account?";
+  static const String nameString = 'Name';
+  static const String nameHintString = 'Enter Your Name';
+  static const String enter6DigitCodeString = 'Enter 6 Digits Code';
+  static const String enter6DigitCodeBodyString = 'Enter the 6 digits code that you received on your email.';
+  static const String confirmCodeString = 'Confirm Code';
+  static const String enterAnotherEmailString = 'Enter another email?';
+  static const String resetPasswordString = 'Reset Password';
+  static const String resetPasswordBodyString = 'Set the new password for your account so you can login and access all the features.';
+  static const String newPasswordString = 'New Password';
+  static const String newPasswordHintString = 'Enter New Password';
+  static const String errorStringCapital = 'ERROR';
+  static const String successStringCapital = 'SUCCESS';
+  static const String accountCreatedSuccessfullyString = 'Congratulations, Account Created Successfully';
+  static const String codeString = 'code';
+  static const String passwordChangedSuccessfullyString = 'Congratulations, Password Changed Successfully';
+  static const String btn1String = 'btn1';
+  static const String btn2String = 'btn2';
+
 
 }

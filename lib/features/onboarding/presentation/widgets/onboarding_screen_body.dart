@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'package:wasel_app/config/app_routes.dart';
-import 'package:wasel_app/core/cache/shared_prefs_utils.dart';
-import 'package:wasel_app/core/utils/app_Strings.dart';
-import 'package:wasel_app/core/utils/app_colors.dart';
-import 'package:wasel_app/core/utils/app_constants.dart';
+import 'package:wasel_app/core/utils/app_strings.dart';
 import 'package:wasel_app/core/utils/app_images.dart';
 import 'package:wasel_app/features/onboarding/model/onboarding_model.dart';
 import 'package:wasel_app/features/onboarding/presentation/widgets/boarding_item.dart';
+import 'package:wasel_app/features/onboarding/presentation/widgets/onboarding_actions_section.dart';
 
 class OnboardingScreenBody extends StatefulWidget {
   const OnboardingScreenBody({super.key});
@@ -67,64 +63,13 @@ class _OnboardingScreenBodyState extends State<OnboardingScreenBody> {
             ),
           ),
           const SizedBox(height: 40),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              FloatingActionButton(
-                heroTag: 'btn1',
-                onPressed: () {
-                  if (isFirst == false) {
-                    boardingController.previousPage(
-                      duration: const Duration(milliseconds: 750),
-                      curve: Curves.fastLinearToSlowEaseIn,
-                    );
-                  } else {}
-                },
-                child: const Icon(
-                  Icons.arrow_back,
-                  color: AppColors.whiteColor,
-                ),
-              ),
-              SmoothPageIndicator(
-                controller: boardingController,
-                count: onboardingList.length,
-                effect: const ExpandingDotsEffect(
-                  dotColor: Colors.grey,
-                  activeDotColor: AppColors.primaryColor,
-                  dotHeight: 10,
-                  dotWidth: 10,
-                  expansionFactor: 3,
-                  spacing: 5,
-                ),
-              ),
-              FloatingActionButton(
-                heroTag: 'btn2',
-                onPressed: () {
-                  if (isLast == false) {
-                    boardingController.nextPage(
-                      duration: const Duration(milliseconds: 750),
-                      curve: Curves.fastLinearToSlowEaseIn,
-                    );
-                  } else {
-                    SharedPrefsUtils.saveData(
-                      key: AppConstants.onboarding,
-                      value: false,
-                    );
-                    Navigator.pushReplacementNamed(
-                      context, AppRoutes.loginScreenRoute,
-                    );
-                  }
-                },
-                child: const Icon(
-                  Icons.arrow_forward,
-                  color: AppColors.whiteColor,
-                ),
-              ),
-            ],
+          OnboardingActionsSection(
+            isFirst: isFirst,
+            isLast: isLast,
+            onboardingLength: onboardingList.length,
+            boardingController: boardingController,
           ),
-          SizedBox(
-            height: 16,
-          ),
+          SizedBox(height: 16),
         ],
       ),
     );
