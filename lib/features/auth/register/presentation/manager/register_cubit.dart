@@ -1,4 +1,3 @@
-import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
@@ -18,6 +17,7 @@ class RegisterCubit extends Cubit<RegisterStates> {
   GlobalKey<FormState> formKey = GlobalKey();
   GlobalKey<FormState> verifyOtpFormKey = GlobalKey();
   AutovalidateMode autoValidateMode = AutovalidateMode.disabled;
+  AutovalidateMode verifyOtpAutoValidateMode = AutovalidateMode.disabled;
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -44,22 +44,25 @@ class RegisterCubit extends Cubit<RegisterStates> {
             emit(RegisterSuccessState(registerResponse: response)),
       );
     } else {
-      changeAutoValidateMode();
+      changeAutoValidateMode(isPinCode: false);
     }
   }
 
   void verifyOtp() async {
       emit(VerifyOtpLoadingState());
-      var either = await verifyOtpUseCase.invoke(
-        email: emailController.text,
-        otp: pinController.text,
-      );
-      either.fold(
-            (failure) => emit(VerifyOtpErrorState(failure: failure)),
-            (response) =>
-            emit(VerifyOtpSuccessState(response: response)),
-      );
-
+      if (verifyOtpFormKey.currentState!.validate()) {
+        var either = await verifyOtpUseCase.invoke(
+          email: emailController.text,
+          otp: pinController.text,
+        );
+        either.fold(
+              (failure) => emit(VerifyOtpErrorState(failure: failure)),
+              (response) =>
+              emit(VerifyOtpSuccessState(response: response)),
+        );
+      } else {
+        changeAutoValidateMode(isPinCode: true);
+      }
   }
 
   void changeVisibility({
@@ -75,8 +78,12 @@ class RegisterCubit extends Cubit<RegisterStates> {
     emit(ChangeVisibilityState());
   }
 
-  void changeAutoValidateMode() {
-    autoValidateMode = AutovalidateMode.always;
+  void changeAutoValidateMode({required bool isPinCode}) {
+    if(isPinCode){
+      verifyOtpAutoValidateMode = AutovalidateMode.always;
+    } else {
+      autoValidateMode = AutovalidateMode.always;
+    }
     emit(ChangeAutoValidateModeState());
   }
 }

@@ -46,30 +46,33 @@ class VerifyOtpBottomSheet extends StatelessWidget {
         }
       },
       builder: (context, state) {
-        return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 32),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              VerifyOtpBottomSheetHintSection(),
-              const SizedBox(height: 50),
-              Center(
-                child: CustomPinCodeWidget(
-                  autoValidateMode: viewModel.autoValidateMode,
-                  codeController: viewModel.pinController,
+        return Form(
+          key: viewModel.verifyOtpFormKey,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 32),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                VerifyOtpBottomSheetHintSection(),
+                const SizedBox(height: 50),
+                Center(
+                  child: CustomPinCodeWidget(
+                    autoValidateMode: viewModel.verifyOtpAutoValidateMode,
+                    codeController: viewModel.pinController,
+                  ),
                 ),
-              ),
-              const SizedBox(height: 32),
-              state is VerifyOtpLoadingState
-                  ? Center(child: CircularProgressIndicator())
-                  : CustomTextButton(
-                      text: AppStrings.confirmCodeString,
-                      onPressed: () {
-                        viewModel.verifyOtp();
-                      },
-                    ),
-            ],
+                const SizedBox(height: 32),
+                state is VerifyOtpLoadingState
+                    ? Center(child: CircularProgressIndicator())
+                    : CustomTextButton(
+                        text: AppStrings.confirmCodeString,
+                        onPressed: () {
+                          viewModel.verifyOtp();
+                        },
+                      ),
+              ],
+            ),
           ),
         );
       },
