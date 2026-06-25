@@ -59,6 +59,17 @@ class AppValidators {
     }
   }
 
+  static String? validatePinCode(String? val, int codeLength) {
+    if (val == null || val.isEmpty) {
+      return 'this field is required';
+    } else if (val.length != codeLength){
+      return 'please complete code';
+    }
+      else {
+      return null;
+    }
+  }
+
 
   static String? validatePhoneNumber(String? val) {
     if (val == null) {

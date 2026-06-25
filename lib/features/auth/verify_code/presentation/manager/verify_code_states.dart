@@ -18,3 +18,5 @@ class VerifyCodeErrorState extends VerifyCodeStates {
 
   VerifyCodeErrorState({required this.failure});
 }
+
+class ChangeAutoValidateModeState extends VerifyCodeStates{}
