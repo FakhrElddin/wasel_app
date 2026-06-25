@@ -12,7 +12,7 @@ import 'package:wasel_app/core/utils/app_validators.dart';
 import 'package:wasel_app/core/utils/dialog_utils.dart';
 import 'package:wasel_app/features/auth/forget_password/presentation/manager/forget_password_cubit.dart';
 import 'package:wasel_app/features/auth/forget_password/presentation/manager/forget_password_states.dart';
-import 'package:wasel_app/features/auth/forget_password/presentation/widgets/hint_section.dart';
+import 'package:wasel_app/features/auth/forget_password/presentation/widgets/forget_password_hint_section.dart';
 import 'package:wasel_app/features/auth/login/presentation/widgets/logo_section.dart';
 
 class ForgetPasswordScreenBody extends StatefulWidget {
@@ -59,7 +59,7 @@ class _ForgetPasswordScreenBodyState extends State<ForgetPasswordScreenBody> {
                   children: [
                     LogoSection(),
                     const SizedBox(height: 50),
-                    HintSection(),
+                    ForgetPasswordHintSection(),
                     const SizedBox(height: 50),
                     CustomTextFormField(
                       controller: viewModel.emailController,

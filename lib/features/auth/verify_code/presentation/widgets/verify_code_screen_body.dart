@@ -12,7 +12,7 @@ import 'package:wasel_app/features/auth/login/presentation/widgets/logo_section.
 import 'package:wasel_app/features/auth/verify_code/presentation/manager/verify_code_cubit.dart';
 import 'package:wasel_app/features/auth/verify_code/presentation/manager/verify_code_states.dart';
 import 'package:wasel_app/features/auth/verify_code/presentation/widgets/custom_pin_code_widget.dart';
-import 'package:wasel_app/features/auth/verify_code/presentation/widgets/hint_section.dart';
+import 'package:wasel_app/features/auth/verify_code/presentation/widgets/verify_code_hint_section.dart';
 
 class VerifyCodeScreenBody extends StatefulWidget {
   const VerifyCodeScreenBody({super.key});
@@ -60,7 +60,7 @@ class _VerifyCodeScreenBodyState extends State<VerifyCodeScreenBody> {
                   children: [
                     LogoSection(),
                     const SizedBox(height: 50),
-                    HintSection(),
+                    VerifyCodeHintSection(),
                     const SizedBox(height: 50),
                     CustomPinCodeWidget(
                       codeController: viewModel.codeController,

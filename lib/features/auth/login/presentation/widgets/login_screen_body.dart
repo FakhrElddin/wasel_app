@@ -12,7 +12,7 @@ import 'package:wasel_app/features/auth/login/presentation/manager/login_cubit.d
 import 'package:wasel_app/features/auth/login/presentation/manager/login_states.dart';
 import 'package:wasel_app/features/auth/login/presentation/widgets/logo_section.dart';
 import 'package:wasel_app/features/auth/login/presentation/widgets/register_section.dart';
-import 'package:wasel_app/features/auth/login/presentation/widgets/text_fields_section.dart';
+import 'package:wasel_app/features/auth/login/presentation/widgets/login_text_fields_section.dart';
 
 class LoginScreenBody extends StatefulWidget {
   const LoginScreenBody({super.key});
@@ -54,7 +54,7 @@ class _LoginScreenBodyState extends State<LoginScreenBody> {
                   children: [
                     const LogoSection(),
                     const SizedBox(height: 50),
-                    TextFieldsSection(viewModel: viewModel),
+                    LoginTextFieldsSection(viewModel: viewModel),
                     const SizedBox(height: 8),
                     TextButton(
                       onPressed: () {

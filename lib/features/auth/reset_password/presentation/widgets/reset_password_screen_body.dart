@@ -3,16 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wasel_app/config/app_routes.dart';
 import 'package:wasel_app/core/components/custom_text_button.dart';
-import 'package:wasel_app/core/components/custom_text_form_field.dart';
 import 'package:wasel_app/core/di/di.dart';
 import 'package:wasel_app/core/utils/app_colors.dart';
-import 'package:wasel_app/core/utils/app_images.dart';
 import 'package:wasel_app/core/utils/app_strings.dart';
 import 'package:wasel_app/core/utils/app_styles.dart';
-import 'package:wasel_app/core/utils/app_validators.dart';
 import 'package:wasel_app/core/utils/dialog_utils.dart';
+import 'package:wasel_app/features/auth/login/presentation/widgets/logo_section.dart';
 import 'package:wasel_app/features/auth/reset_password/presentation/manager/reset_password_cubit.dart';
 import 'package:wasel_app/features/auth/reset_password/presentation/manager/reset_password_states.dart';
+import 'package:wasel_app/features/auth/reset_password/presentation/widgets/reset_password_hint_section.dart';
+import 'package:wasel_app/features/auth/reset_password/presentation/widgets/reset_password_text_fields_section.dart';
 
 class ResetPasswordScreenBody extends StatefulWidget {
   const ResetPasswordScreenBody({super.key});
@@ -68,83 +68,14 @@ class _ResetPasswordScreenBodyState extends State<ResetPasswordScreenBody> {
                 autovalidateMode: viewModel.autoValidateMode,
                 child: Column(
                   children: [
-                    Image.asset(AppImages.logoImage, width: 180, height: 180),
-                    Text(
-                      AppStrings.waselStringCapital,
-                      style: AppStyles.bold38Text,
-                    ),
+                    LogoSection(),
                     const SizedBox(height: 50),
-                    Row(
-                      children: [
-                        Text(
-                          AppStrings.resetPasswordString,
-                          style: AppStyles.bold24Text,
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      AppStrings.resetPasswordBodyString,
-                      style: AppStyles.regular16Text,
-                    ),
+                    ResetPasswordHintSection(),
                     const SizedBox(height: 50),
-                    CustomTextFormField(
-                      controller: viewModel.newPasswordController,
-                      textInputAction: TextInputAction.done,
-                      labelText: AppStrings.newPasswordString,
-                      hintText: AppStrings.newPasswordHintString,
-                      validator: AppValidators.validatePassword,
-                      isPassword: viewModel.firstIsPassword,
-                      suffixIcon: IconButton(
-                        onPressed: () {
-                          viewModel.changeVisibility(
-                            isFirstField: true,
-                            isPassword: !viewModel.firstIsPassword,
-                          );
-                        },
-                        icon: Icon(
-                          viewModel.firstIsPassword
-                              ? Icons.visibility_off
-                              : Icons.visibility,
-                          color: AppColors.primaryColor,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 16),
-                    CustomTextFormField(
-                      controller: viewModel.confirmNewPasswordController,
-                      textInputAction: TextInputAction.done,
-                      labelText: AppStrings.confirmPasswordString,
-                      hintText: AppStrings.confirmPasswordHintString,
-                      validator: (value) {
-                        return AppValidators.validateConfirmPassword(
-                          value,
-                          viewModel.newPasswordController.text,
-                        );
-                      },
-                      isPassword: viewModel.secondIsPassword,
-                      suffixIcon: IconButton(
-                        onPressed: () {
-                          viewModel.changeVisibility(
-                            isFirstField: false,
-                            isPassword: !viewModel.secondIsPassword,
-                          );
-                        },
-                        icon: Icon(
-                          viewModel.secondIsPassword
-                              ? Icons.visibility_off
-                              : Icons.visibility,
-                          color: AppColors.primaryColor,
-                        ),
-                      ),
-                    ),
+                    ResetPasswordTextFieldsSection(viewModel: viewModel),
                     const SizedBox(height: 24),
                     state is ResetPasswordLoadingState
-                        ? Center(
-                            child: CircularProgressIndicator(
-                              color: AppColors.primaryColor,
-                            ),
-                          )
+                        ? Center(child: CircularProgressIndicator())
                         : CustomTextButton(
                             text: AppStrings.resetPasswordString,
                             onPressed: () {

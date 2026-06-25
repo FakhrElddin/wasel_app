@@ -5,8 +5,8 @@ import 'package:wasel_app/core/utils/app_strings.dart';
 import 'package:wasel_app/core/utils/app_validators.dart';
 import 'package:wasel_app/features/auth/login/presentation/manager/login_cubit.dart';
 
-class TextFieldsSection extends StatelessWidget {
-  const TextFieldsSection({super.key, required this.viewModel});
+class LoginTextFieldsSection extends StatelessWidget {
+  const LoginTextFieldsSection({super.key, required this.viewModel});
 
   final LoginCubit viewModel;
 

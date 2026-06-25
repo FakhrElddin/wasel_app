@@ -10,7 +10,7 @@ import 'package:wasel_app/features/auth/login/presentation/widgets/logo_section.
 import 'package:wasel_app/features/auth/register/presentation/manager/register_cubit.dart';
 import 'package:wasel_app/features/auth/register/presentation/manager/register_states.dart';
 import 'package:wasel_app/features/auth/register/presentation/widgets/login_section.dart';
-import 'package:wasel_app/features/auth/register/presentation/widgets/text_fields_section.dart';
+import 'package:wasel_app/features/auth/register/presentation/widgets/register_text_fields_section.dart';
 import 'package:wasel_app/features/auth/register/presentation/widgets/verify_otp_bottom_sheet.dart';
 
 
@@ -57,7 +57,7 @@ class _RegisterScreenBodyState extends State<RegisterScreenBody> {
                   children: [
                     LogoSection(),
                     const SizedBox(height: 50),
-                    TextFieldsSection(viewModel: viewModel),
+                    RegisterTextFieldsSection(viewModel: viewModel),
                     const SizedBox(height: 32),
                     state is RegisterLoadingState
                         ? Center(child: CircularProgressIndicator())

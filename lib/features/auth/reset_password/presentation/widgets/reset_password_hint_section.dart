@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:wasel_app/core/utils/app_strings.dart';
 import 'package:wasel_app/core/utils/app_styles.dart';
 
-class HintSection extends StatelessWidget {
-  const HintSection({super.key});
+class ResetPasswordHintSection extends StatelessWidget {
+  const ResetPasswordHintSection({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -11,12 +11,12 @@ class HintSection extends StatelessWidget {
       children: [
         Row(
           children: [
-            Text(AppStrings.forgetPasswordString, style: AppStyles.bold24Text),
+            Text(AppStrings.resetPasswordString, style: AppStyles.bold24Text),
           ],
         ),
         const SizedBox(height: 8),
         Text(
-          AppStrings.forgetPasswordBodyString,
+          AppStrings.resetPasswordBodyString,
           style: AppStyles.regular16Text,
         ),
       ],
