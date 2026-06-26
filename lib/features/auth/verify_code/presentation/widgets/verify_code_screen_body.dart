@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wasel_app/config/app_routes.dart';
 import 'package:wasel_app/core/components/custom_text_button.dart';
-import 'package:wasel_app/core/di/di.dart';
 import 'package:wasel_app/core/utils/app_colors.dart';
 import 'package:wasel_app/core/utils/app_strings.dart';
 import 'package:wasel_app/core/utils/app_styles.dart';
@@ -14,21 +13,13 @@ import 'package:wasel_app/features/auth/verify_code/presentation/manager/verify_
 import 'package:wasel_app/features/auth/verify_code/presentation/widgets/custom_pin_code_widget.dart';
 import 'package:wasel_app/features/auth/verify_code/presentation/widgets/verify_code_hint_section.dart';
 
-class VerifyCodeScreenBody extends StatefulWidget {
+class VerifyCodeScreenBody extends StatelessWidget {
   const VerifyCodeScreenBody({super.key});
-
-  @override
-  State<VerifyCodeScreenBody> createState() => _VerifyCodeScreenBodyState();
-}
-
-class _VerifyCodeScreenBodyState extends State<VerifyCodeScreenBody> {
-  VerifyCodeCubit viewModel = getIt<VerifyCodeCubit>();
 
   @override
   Widget build(BuildContext context) {
     String email = ModalRoute.of(context)!.settings.arguments as String;
     return BlocConsumer<VerifyCodeCubit, VerifyCodeStates>(
-      bloc: viewModel,
       listener: (context, state) {
         if (state is VerifyCodeErrorState) {
           DialogUtils.showAwSomeDialog(
@@ -43,13 +34,16 @@ class _VerifyCodeScreenBodyState extends State<VerifyCodeScreenBody> {
             context,
             AppRoutes.resetPasswordScreenRoute,
             arguments: {
-              AppStrings.emailString.toLowerCase() : email,
-              AppStrings.codeString : viewModel.codeController.text,
+              AppStrings.emailString.toLowerCase(): email,
+              AppStrings.codeString: BlocProvider.of<VerifyCodeCubit>(
+                context,
+              ).codeController.text,
             },
           );
         }
       },
       builder: (context, state) {
+        VerifyCodeCubit viewModel = BlocProvider.of<VerifyCodeCubit>(context);
         return Form(
           key: viewModel.formKey,
           child: Padding(

@@ -23,7 +23,7 @@ class WaselApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme,
       routes: AppRoutes.routes,
-      initialRoute: AppRoutes.homeScreenRoute,
+      initialRoute: AppRoutes.splashScreenRoute,
     );
   }
 }
