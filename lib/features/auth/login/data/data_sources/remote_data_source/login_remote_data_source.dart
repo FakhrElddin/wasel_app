@@ -5,7 +5,9 @@ import 'package:injectable/injectable.dart';
 import 'package:wasel_app/core/api/api_manager.dart';
 import 'package:wasel_app/core/api/end_points.dart';
 import 'package:wasel_app/core/api/status_code.dart';
+import 'package:wasel_app/core/cache/shared_prefs_utils.dart';
 import 'package:wasel_app/core/errors/failures.dart';
+import 'package:wasel_app/core/utils/app_constants.dart';
 import 'package:wasel_app/features/auth/login/data/models/login_response_dm.dart';
 import 'package:wasel_app/features/auth/login/domain/entities/login_response_entity.dart';
 
@@ -15,7 +17,6 @@ abstract class LoginRemoteDataSource {
     required String password,
   });
 }
-
 
 @Injectable(as: LoginRemoteDataSource)
 class LoginRemoteDataSourceImpl implements LoginRemoteDataSource {
@@ -35,20 +36,21 @@ class LoginRemoteDataSourceImpl implements LoginRemoteDataSource {
           connectivityResult.contains(ConnectivityResult.wifi)) {
         var response = await apiManager.postData(
           endPoint: EndPoints.loginEndPoint,
-          data: {
-            "email": email,
-            "password": password,
-          },
+          data: {"email": email, "password": password},
         );
         var loginResponse = LoginResponseDm.fromJson(response.data);
         if (response.statusCode! >= StatusCode.statusCode200 &&
             response.statusCode! < StatusCode.statusCode300) {
+          await SharedPrefsUtils.saveData(
+            key: AppConstants.token,
+            value: loginResponse.token,
+          );
           return Right(loginResponse);
         } else {
           return Left(
             ServerError(
               errorMessage:
-              loginResponse.message ??
+                  loginResponse.message ??
                   'Something went wrong, please try again later.',
             ),
           );

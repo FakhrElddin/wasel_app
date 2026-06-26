@@ -50,14 +50,7 @@ class _ProfessionalSplashScreenState extends State<SplashScreenBody>
 
     _animationController.forward();
 
-    Timer(const Duration(milliseconds: 3000), () {
-      Navigator.pushReplacementNamed(
-        context,
-        showOnboardingScreen == null
-            ? AppRoutes.onboardingScreenRoute
-            : AppRoutes.loginScreenRoute,
-      );
-    });
+    navigateToNextScreen();
   }
 
   @override
@@ -100,5 +93,26 @@ class _ProfessionalSplashScreenState extends State<SplashScreenBody>
         ),
       ),
     );
+  }
+
+  void navigateToNextScreen() {
+
+    Timer(const Duration(milliseconds: 3000), () {
+      if (!mounted) return;
+      final bool? showOnboardingScreen =
+          SharedPrefsUtils.getData(key: AppConstants.onboarding) as bool?;
+      final String? token =
+          SharedPrefsUtils.getData(key: AppConstants.token) as String?;
+      String nextRoute;
+      if (showOnboardingScreen == null) {
+        nextRoute = AppRoutes.onboardingScreenRoute;
+      } else if (token != null) {
+        nextRoute = AppRoutes.homeScreenRoute;
+      } else {
+        nextRoute = AppRoutes.loginScreenRoute;
+      }
+
+      Navigator.pushReplacementNamed(context, nextRoute);
+    });
   }
 }

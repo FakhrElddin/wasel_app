@@ -29,7 +29,11 @@ class LoginScreenBody extends StatelessWidget {
             btnOkOnPress: () {},
           );
         } else if (state is LoginSuccessState) {
-          // navigate to home
+          Navigator.pushNamedAndRemoveUntil(
+            context,
+            AppRoutes.homeScreenRoute,
+            (route) => false,
+          );
         }
       },
       builder: (context, state) {
@@ -65,9 +69,7 @@ class LoginScreenBody extends StatelessWidget {
                     ),
                     const SizedBox(height: 8),
                     state is LoginLoadingState
-                        ? Center(
-                            child: CircularProgressIndicator(),
-                          )
+                        ? Center(child: CircularProgressIndicator())
                         : CustomTextButton(
                             text: AppStrings.loginString,
                             onPressed: () {
