@@ -4,6 +4,7 @@ import 'package:wasel_app/features/auth/login/presentation/screens/login_screen.
 import 'package:wasel_app/features/auth/register/presentation/screens/register_screen.dart';
 import 'package:wasel_app/features/auth/reset_password/presentation/screens/reset_password_screen.dart';
 import 'package:wasel_app/features/auth/verify_code/presentation/screens/verify_code_screen.dart';
+import 'package:wasel_app/features/home/presentation/screens/home_screen.dart';
 import 'package:wasel_app/features/onboarding/presentation/screens/onboarding_screen.dart';
 import 'package:wasel_app/features/splash/presentation/screens/splash_screen.dart';
 
@@ -14,7 +15,8 @@ class AppRoutes {
   static const String registerScreenRoute = 'registerRoute';
   static const String forgetPasswordScreenRoute = 'forgetPasswordRoute';
   static const String verifyCodeScreenRoute = 'verifyCodeRoute';
-  static const String resetPasswordScreenRoute = 'resetPasswordCodeRoute';
+  static const String resetPasswordScreenRoute = 'resetPasswordRoute';
+  static const String homeScreenRoute = 'homeRoute';
 
 
   static Map<String, Widget Function(BuildContext)> routes = {
@@ -25,5 +27,6 @@ class AppRoutes {
     AppRoutes.forgetPasswordScreenRoute: (context) => ForgetPasswordScreen(),
     AppRoutes.verifyCodeScreenRoute: (context) => VerifyCodeScreen(),
     AppRoutes.resetPasswordScreenRoute: (context) => ResetPasswordScreen(),
+    AppRoutes.homeScreenRoute: (context) => HomeScreen(),
   };
 }
