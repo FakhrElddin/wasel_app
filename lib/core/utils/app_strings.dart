@@ -42,6 +42,7 @@ class AppStrings {
   static const String btn1String = 'btn1';
   static const String btn2String = 'btn2';
   static const String categoriesString = 'Categories';
+  static const String booksString = 'Books';
 
 
 }

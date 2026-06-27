@@ -15,6 +15,7 @@ class CustomAppBar extends StatelessWidget {
       snap: true,
       pinned: false,
       titleSpacing: AppConstants.appPadding,
+      surfaceTintColor: AppColors.transparentColor,
       actionsPadding: EdgeInsetsDirectional.only(end: AppConstants.appPadding),
       title: Row(
         children: [

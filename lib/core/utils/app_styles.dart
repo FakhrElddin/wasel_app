@@ -36,6 +36,10 @@ class AppStyles {
     fontSize: 16,
     fontWeight: FontWeight.w400,
   );
+  static TextStyle bold16Text = GoogleFonts.poppins(
+    fontSize: 16,
+    fontWeight: FontWeight.bold,
+  );
   static TextStyle bold14Text = GoogleFonts.poppins(
     fontSize: 14,
     fontWeight: FontWeight.bold,

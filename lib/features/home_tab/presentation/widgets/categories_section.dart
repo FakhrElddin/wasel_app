@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wasel_app/core/utils/app_constants.dart';
 import 'package:wasel_app/core/utils/app_strings.dart';
 import 'package:wasel_app/core/utils/app_styles.dart';
 import 'package:wasel_app/features/home_tab/presentation/widgets/selected_and_unselected_category_card.dart';
@@ -19,11 +20,22 @@ class _CategoriesSectionState extends State<CategoriesSection> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Text(AppStrings.categoriesString, style: AppStyles.bold20Text),
+          Padding(
+            padding: const EdgeInsetsDirectional.only(
+              start: AppConstants.appPadding,
+            ),
+            child: Text(
+              AppStrings.categoriesString,
+              style: AppStyles.bold20Text,
+            ),
+          ),
           const SizedBox(height: 8),
           SizedBox(
             height: 120,
             child: ListView.separated(
+              padding: const EdgeInsetsDirectional.symmetric(
+                horizontal: AppConstants.appPadding,
+              ),
               scrollDirection: Axis.horizontal,
               physics: const BouncingScrollPhysics(),
               itemBuilder: (context, index) => GestureDetector(
