@@ -56,6 +56,7 @@ class _OnboardingScreenBodyState extends State<OnboardingScreenBody> {
                 } else {
                   isFirst = false;
                 }
+                setState(() {});
               },
               itemBuilder: (context, index) =>
                   BoardingItem(onboardingModel: onboardingList[index]),
