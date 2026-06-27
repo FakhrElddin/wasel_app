@@ -41,6 +41,7 @@ class AppStrings {
   static const String passwordChangedSuccessfullyString = 'Congratulations, Password Changed Successfully';
   static const String btn1String = 'btn1';
   static const String btn2String = 'btn2';
+  static const String categoriesString = 'Categories';
 
 
 }

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:wasel_app/core/utils/app_constants.dart';
+import 'package:wasel_app/features/home_tab/presentation/widgets/categories_section.dart';
 import 'package:wasel_app/features/home_tab/presentation/widgets/custom_app_bar.dart';
 import 'package:wasel_app/features/home_tab/presentation/widgets/custom_carousel_slider.dart';
 
@@ -12,9 +14,11 @@ class HomeTabScreenBody extends StatelessWidget {
         CustomAppBar(),
         SliverPadding(
           padding: EdgeInsets.symmetric(vertical: 16),
-          sliver: SliverToBoxAdapter(
-            child: CustomCarouselSlider(),
-          ),
+          sliver: SliverToBoxAdapter(child: CustomCarouselSlider()),
+        ),
+        SliverPadding(
+          padding: EdgeInsetsDirectional.only(start: AppConstants.appPadding),
+          sliver: CategoriesSection(),
         ),
       ],
     );
