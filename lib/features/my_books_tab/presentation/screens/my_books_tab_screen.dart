@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wasel_app/core/utils/app_colors.dart';
 import 'package:wasel_app/features/my_books_tab/presentation/widgets/my_books_tab_screen_body.dart';
 
 class MyBooksTabScreen extends StatelessWidget {
@@ -6,6 +7,16 @@ class MyBooksTabScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MyBooksTabScreenBody();
+    return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: Icon(
+          Icons.add,
+          color: AppColors.whiteColor,
+          size: 32,
+        ),
+      ),
+      body: MyBooksTabScreenBody(),
+    );
   }
 }

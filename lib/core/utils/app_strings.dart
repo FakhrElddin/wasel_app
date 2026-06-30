@@ -44,6 +44,7 @@ class AppStrings {
   static const String categoriesString = 'Categories';
   static const String booksString = 'Books';
   static const String myFavoritesString = 'My Favorites';
+  static const String myBooksString = 'My Books';
 
 
 }
