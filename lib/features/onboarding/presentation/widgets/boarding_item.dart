@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:wasel_app/core/utils/app_styles.dart';
-import 'package:wasel_app/features/onboarding/model/onboarding_model.dart';
+import 'package:wasel_app/features/onboarding/data/model/onboarding_model.dart';
 
 class BoardingItem extends StatelessWidget {
   const BoardingItem({super.key, required this.onboardingModel});
