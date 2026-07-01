@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:wasel_app/core/utils/app_colors.dart';
 
 class CustomTextFormField extends StatelessWidget {
@@ -19,6 +20,7 @@ class CustomTextFormField extends StatelessWidget {
     this.fillColor,
     this.hintFontSize,
     this.prefixIcon,
+    this.inputFormatters,
   });
 
   final String? hintText;
@@ -36,10 +38,12 @@ class CustomTextFormField extends StatelessWidget {
   final bool? filledColor;
   final Color? fillColor;
   final double? hintFontSize;
+  final List<TextInputFormatter>? inputFormatters;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      inputFormatters: inputFormatters,
       readOnly: readOnly!,
       textInputAction: textInputAction,
       controller: controller,

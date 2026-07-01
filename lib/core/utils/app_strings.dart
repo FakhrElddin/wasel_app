@@ -45,6 +45,22 @@ class AppStrings {
   static const String booksString = 'Books';
   static const String myFavoritesString = 'My Favorites';
   static const String myBooksString = 'My Books';
+  static const String bookPhotosString = 'book photos';
+  static const String bookInformationString = 'book information';
+  static const String priceString = 'Price';
+  static const String egp200String = '200 EGP';
+  static const String usedTimeString = 'Used Time';
+  static const String years2String = '2 years';
+  static const String string1990 = '1990';
+  static const String editionString = 'Edition';
+  static const String bookStateString = 'Book State';
+  static const String bookCategoryString = 'Book Category';
+  static const String coverString = 'Cover';
+  static const String stubString = 'Stub';
+  static const String printingString = 'Printing';
+  static const String publishString = 'Publish';
+  static const String categoryString = 'Category';
+  static const String stateString = 'State';
 
 
 }
