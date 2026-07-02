@@ -61,6 +61,9 @@ class AppStrings {
   static const String publishString = 'Publish';
   static const String categoryString = 'Category';
   static const String stateString = 'State';
+  static const String fullNameString = 'Full Name';
+  static const String cardIdString = "Card ID";
+  static const String cityRegionString = "City/Region";
 
 
 }

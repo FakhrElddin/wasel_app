@@ -1,8 +1,12 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:wasel_app/core/components/custom_text_button.dart';
 import 'package:wasel_app/core/utils/app_colors.dart';
+import 'package:wasel_app/core/utils/app_constants.dart';
+import 'package:wasel_app/core/utils/app_strings.dart';
 import 'package:wasel_app/core/utils/app_styles.dart';
+import 'package:wasel_app/features/profile_tab/presentation/widgets/profile_image.dart';
+
+import 'profile_details_image.dart';
 
 class ProfileTabScreenBody extends StatelessWidget {
   const ProfileTabScreenBody({super.key});
@@ -11,7 +15,7 @@ class ProfileTabScreenBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 25),
+        padding: const EdgeInsets.symmetric(horizontal: AppConstants.appPadding),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -19,35 +23,13 @@ class ProfileTabScreenBody extends StatelessWidget {
               height: 25,
             ),
             Center(
-              child: ClipRRect(
-                child: CachedNetworkImage(
-                  fit: BoxFit.fill,
-                  imageUrl: 'https://t3.ftcdn.net/jpg/06/92/34/64/240_F_692346400_UzYGmrJm6qhyPPXyZeUGuyEhkwr1iSFN.jpg',
-                  imageBuilder: (context, imageProvider) => Container(
-                    width: 180.0,
-                    height: 180.0,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                          image: imageProvider,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                  progressIndicatorBuilder: (context, url, downloadProgress) =>
-                      Center(
-                          child: CircularProgressIndicator(),
-                      ),
-                  errorWidget: (context, url, error) =>
-                  const Center(child: Icon(Icons.error)),
-                ),
-              ),
+              child: ProfileImage(),
             ),
             const SizedBox(
               height: 20,
             ),
             Text(
-              'Email',
+              AppStrings.emailString,
               style: AppStyles.regular20Text,
             ),
             const SizedBox(
@@ -60,7 +42,7 @@ class ProfileTabScreenBody extends StatelessWidget {
               height: 20,
             ),
             Text(
-              'Full name',
+              AppStrings.fullNameString,
               style: AppStyles.regular20Text,
             ),
             const SizedBox(
@@ -73,7 +55,7 @@ class ProfileTabScreenBody extends StatelessWidget {
               height: 20,
             ),
             Text(
-              "Card ID",
+              AppStrings.cardIdString,
               style: AppStyles.regular20Text,
             ),
             const SizedBox(
@@ -86,7 +68,7 @@ class ProfileTabScreenBody extends StatelessWidget {
               height: 20,
             ),
             Text(
-              "City/Region",
+              AppStrings.cityRegionString,
               style: AppStyles.regular20Text,
             ),
             const SizedBox(
@@ -114,36 +96,6 @@ class ProfileTabScreenBody extends StatelessWidget {
               height: 100,
             ),
           ],
-        ),
-      ),
-    );
-  }
-}
-
-class ProfileDetailsItem extends StatelessWidget {
-  const ProfileDetailsItem({
-    super.key,
-    required this.text,
-  });
-
-  final String text;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 60,
-      width: double.maxFinite,
-      decoration: BoxDecoration(
-          border: Border.all(
-            color: Colors.grey,
-          ),
-          shape: BoxShape.rectangle,
-          borderRadius: BorderRadius.circular(6)),
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Text(
-          text,
-          style: AppStyles.medium20Text,
         ),
       ),
     );
