@@ -22,6 +22,14 @@ class AppStyles {
     fontSize: 20,
     fontWeight: FontWeight.bold,
   );
+  static TextStyle regular20Text = GoogleFonts.poppins(
+    fontSize: 20,
+    fontWeight: FontWeight.w400,
+  );
+  static TextStyle medium20Text = GoogleFonts.poppins(
+    fontSize: 20,
+    fontWeight: FontWeight.w500,
+  );
   static TextStyle bold18Text = GoogleFonts.poppins(
     fontSize: 18,
     fontWeight: FontWeight.bold,
