@@ -65,6 +65,9 @@ class AppStrings {
   static const String cardIdString = "Card ID";
   static const String cityRegionString = "City/Region";
   static const String bookDetailsString = 'Book Details';
+  static const String bookGalleryString = 'Book Gallery';
+  static const String bookImagesString = 'bookImages';
+  static const String initialIndexString = 'initialIndex';
 
 
 }

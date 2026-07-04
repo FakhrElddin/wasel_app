@@ -6,6 +6,7 @@ import 'package:wasel_app/features/auth/reset_password/presentation/screens/rese
 import 'package:wasel_app/features/auth/verify_code/presentation/screens/verify_code_screen.dart';
 import 'package:wasel_app/features/home/presentation/screens/home_screen.dart';
 import 'package:wasel_app/features/home_tab/presentation/screens/book_details_screen.dart';
+import 'package:wasel_app/features/home_tab/presentation/screens/book_gallery_screen.dart';
 import 'package:wasel_app/features/my_books_tab/presentation/screens/add_book_screen.dart';
 import 'package:wasel_app/features/onboarding/presentation/screens/onboarding_screen.dart';
 import 'package:wasel_app/features/splash/presentation/screens/splash_screen.dart';
@@ -21,6 +22,7 @@ class AppRoutes {
   static const String homeScreenRoute = 'homeRoute';
   static const String addBookScreenRoute = 'addBookRoute';
   static const String bookDetailsScreenRoute = 'bookDetailsRoute';
+  static const String bookGalleryScreenRoute = 'bookGalleryRoute';
 
 
   static Map<String, Widget Function(BuildContext)> routes = {
@@ -34,5 +36,6 @@ class AppRoutes {
     AppRoutes.homeScreenRoute: (context) => HomeScreen(),
     AppRoutes.addBookScreenRoute: (context) => AddBookScreen(),
     AppRoutes.bookDetailsScreenRoute: (context) => BookDetailsScreen(),
+    AppRoutes.bookGalleryScreenRoute: (context) => BookGalleryScreen(),
   };
 }
