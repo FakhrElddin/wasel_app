@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wasel_app/config/app_routes.dart';
 import 'package:wasel_app/features/home_tab/presentation/widgets/book_card.dart';
 
 class BooksGridView extends StatelessWidget {
@@ -14,7 +15,12 @@ class BooksGridView extends StatelessWidget {
         mainAxisSpacing: 12,
         mainAxisExtent: 350,
       ),
-      itemBuilder: (context, index) => BookCard(),
+      itemBuilder: (context, index) => InkWell(
+        onTap: () {
+          Navigator.pushNamed(context, AppRoutes.bookDetailsScreenRoute);
+        },
+        child: BookCard(),
+      ),
     );
   }
 }

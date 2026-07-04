@@ -15,7 +15,7 @@ class FavoriteBookCard extends StatelessWidget {
           margin: EdgeInsetsDirectional.only(top: 12,end: 12,),
           decoration: BoxDecoration(
             color: AppColors.greyColor.withValues(alpha: 0.4),
-            borderRadius: BorderRadius.circular(50),
+            shape: BoxShape.circle,
           ),
           child: IconButton(
             onPressed: () {},

@@ -64,6 +64,7 @@ class AppStrings {
   static const String fullNameString = 'Full Name';
   static const String cardIdString = "Card ID";
   static const String cityRegionString = "City/Region";
+  static const String bookDetailsString = 'Book Details';
 
 
 }
