@@ -35,6 +35,11 @@ class AppStyles {
     fontWeight: FontWeight.bold,
     color: AppColors.primaryColor,
   );
+  static TextStyle semiBold18Text = GoogleFonts.poppins(
+    fontSize: 18,
+    color: AppColors.primaryColor,
+    fontWeight: FontWeight.w600,
+  );
   static TextStyle regular18Text = GoogleFonts.poppins(
     fontSize: 18,
     fontWeight: FontWeight.w400,

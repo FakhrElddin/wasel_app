@@ -68,6 +68,8 @@ class AppStrings {
   static const String bookGalleryString = 'Book Gallery';
   static const String bookImagesString = 'bookImages';
   static const String initialIndexString = 'initialIndex';
+  static const String showMoreString = 'Show more';
+  static const String showLessString = 'Show less';
 
 
 }
