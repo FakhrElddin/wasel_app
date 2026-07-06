@@ -6,7 +6,7 @@ import 'package:wasel_app/core/utils/app_styles.dart';
 import 'package:wasel_app/features/home_tab/presentation/widgets/book_details_screen_app_bar.dart';
 import 'package:wasel_app/features/home_tab/presentation/widgets/book_gallery_section.dart';
 import 'package:readmore/readmore.dart';
-import 'package:wasel_app/features/home_tab/presentation/widgets/book_info_item.dart';
+import 'package:wasel_app/features/home_tab/presentation/widgets/book_info_section.dart';
 
 class BookDetailsScreenBody extends StatelessWidget {
   const BookDetailsScreenBody({super.key});
@@ -20,7 +20,10 @@ class BookDetailsScreenBody extends StatelessWidget {
         SliverToBoxAdapter(child: BookGallerySection()),
         SliverToBoxAdapter(
           child: Padding(
-            padding: const EdgeInsets.all(AppConstants.appPadding),
+            padding: const EdgeInsets.symmetric(
+              horizontal: AppConstants.appPadding,
+              vertical: 24,
+            ),
             child: ReadMoreText(
               'Die Protestantische Ethik Und Der Geist Des Kapitalismus Die Protestantische Ethik Und Der Geist Des Kapitalismus',
               style: AppStyles.bold20Text,
@@ -36,16 +39,15 @@ class BookDetailsScreenBody extends StatelessWidget {
           ),
         ),
         SliverToBoxAdapter(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: AppConstants.appPadding,
-            ),
-            child: BookInfoItem(label: 'Edition', value: '2001'),
+          child: BookInfoSection(
+            editionValue: '2002',
+            categoryValue: 'Political Science',
+            timeUsedValue: '3 Years',
+            priceValue: '250',
+            statusValue: 'Like New',
           ),
         ),
       ],
     );
   }
 }
-
-

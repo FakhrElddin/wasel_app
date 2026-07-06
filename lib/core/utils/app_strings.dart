@@ -70,6 +70,8 @@ class AppStrings {
   static const String initialIndexString = 'initialIndex';
   static const String showMoreString = 'Show more';
   static const String showLessString = 'Show less';
+  static const String timeUsedString = 'Time Used';
+  static const String statusString = 'Status';
 
 
 }
