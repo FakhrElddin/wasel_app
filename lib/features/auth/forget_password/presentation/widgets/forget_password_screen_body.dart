@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wasel_app/config/app_routes.dart';
 import 'package:wasel_app/core/components/custom_text_button.dart';
 import 'package:wasel_app/core/components/custom_text_form_field.dart';
-import 'package:wasel_app/core/di/di.dart';
 import 'package:wasel_app/core/utils/app_colors.dart';
 import 'package:wasel_app/core/utils/app_strings.dart';
 import 'package:wasel_app/core/utils/app_styles.dart';
@@ -15,21 +14,12 @@ import 'package:wasel_app/features/auth/forget_password/presentation/manager/for
 import 'package:wasel_app/features/auth/forget_password/presentation/widgets/forget_password_hint_section.dart';
 import 'package:wasel_app/features/auth/login/presentation/widgets/logo_section.dart';
 
-class ForgetPasswordScreenBody extends StatefulWidget {
+class ForgetPasswordScreenBody extends StatelessWidget {
   const ForgetPasswordScreenBody({super.key});
-
-  @override
-  State<ForgetPasswordScreenBody> createState() =>
-      _ForgetPasswordScreenBodyState();
-}
-
-class _ForgetPasswordScreenBodyState extends State<ForgetPasswordScreenBody> {
-  ForgetPasswordCubit viewModel = getIt<ForgetPasswordCubit>();
 
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<ForgetPasswordCubit, ForgetPasswordStates>(
-      bloc: viewModel,
       listener: (context, state) {
         if (state is ForgetPasswordErrorState) {
           DialogUtils.showAwSomeDialog(
@@ -43,11 +33,16 @@ class _ForgetPasswordScreenBodyState extends State<ForgetPasswordScreenBody> {
           Navigator.pushReplacementNamed(
             context,
             AppRoutes.verifyCodeScreenRoute,
-            arguments: viewModel.emailController.text,
+            arguments: BlocProvider.of<ForgetPasswordCubit>(
+              context,
+            ).emailController.text,
           );
         }
       },
       builder: (context, state) {
+        ForgetPasswordCubit viewModel = BlocProvider.of<ForgetPasswordCubit>(
+          context,
+        );
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Center(

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wasel_app/config/app_routes.dart';
 import 'package:wasel_app/core/components/custom_text_button.dart';
-import 'package:wasel_app/core/di/di.dart';
 import 'package:wasel_app/core/utils/app_colors.dart';
 import 'package:wasel_app/core/utils/app_strings.dart';
 import 'package:wasel_app/core/utils/app_styles.dart';
@@ -14,20 +13,12 @@ import 'package:wasel_app/features/auth/login/presentation/widgets/logo_section.
 import 'package:wasel_app/features/auth/login/presentation/widgets/register_section.dart';
 import 'package:wasel_app/features/auth/login/presentation/widgets/login_text_fields_section.dart';
 
-class LoginScreenBody extends StatefulWidget {
+class LoginScreenBody extends StatelessWidget {
   const LoginScreenBody({super.key});
-
-  @override
-  State<LoginScreenBody> createState() => _LoginScreenBodyState();
-}
-
-class _LoginScreenBodyState extends State<LoginScreenBody> {
-  LoginCubit viewModel = getIt<LoginCubit>();
 
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<LoginCubit, LoginStates>(
-      bloc: viewModel,
       listener: (context, state) {
         if (state is LoginErrorState) {
           DialogUtils.showAwSomeDialog(
@@ -38,10 +29,15 @@ class _LoginScreenBodyState extends State<LoginScreenBody> {
             btnOkOnPress: () {},
           );
         } else if (state is LoginSuccessState) {
-          // navigate to home
+          Navigator.pushNamedAndRemoveUntil(
+            context,
+            AppRoutes.homeScreenRoute,
+            (route) => false,
+          );
         }
       },
       builder: (context, state) {
+        LoginCubit viewModel = BlocProvider.of<LoginCubit>(context);
         return Form(
           key: viewModel.formKey,
           autovalidateMode: viewModel.autoValidateMode,
@@ -73,9 +69,7 @@ class _LoginScreenBodyState extends State<LoginScreenBody> {
                     ),
                     const SizedBox(height: 8),
                     state is LoginLoadingState
-                        ? Center(
-                            child: CircularProgressIndicator(),
-                          )
+                        ? Center(child: CircularProgressIndicator())
                         : CustomTextButton(
                             text: AppStrings.loginString,
                             onPressed: () {

@@ -18,6 +18,28 @@ class AppStyles {
     fontWeight: FontWeight.w400,
     color: AppColors.whiteColor,
   );
+  static TextStyle bold20Text = GoogleFonts.poppins(
+    fontSize: 20,
+    fontWeight: FontWeight.bold,
+  );
+  static TextStyle regular20Text = GoogleFonts.poppins(
+    fontSize: 20,
+    fontWeight: FontWeight.w400,
+  );
+  static TextStyle medium20Text = GoogleFonts.poppins(
+    fontSize: 20,
+    fontWeight: FontWeight.w500,
+  );
+  static TextStyle bold18Text = GoogleFonts.poppins(
+    fontSize: 18,
+    fontWeight: FontWeight.bold,
+    color: AppColors.primaryColor,
+  );
+  static TextStyle semiBold18Text = GoogleFonts.poppins(
+    fontSize: 18,
+    color: AppColors.primaryColor,
+    fontWeight: FontWeight.w600,
+  );
   static TextStyle regular18Text = GoogleFonts.poppins(
     fontSize: 18,
     fontWeight: FontWeight.w400,
@@ -26,6 +48,10 @@ class AppStyles {
   static TextStyle regular16Text = GoogleFonts.poppins(
     fontSize: 16,
     fontWeight: FontWeight.w400,
+  );
+  static TextStyle bold16Text = GoogleFonts.poppins(
+    fontSize: 16,
+    fontWeight: FontWeight.bold,
   );
   static TextStyle bold14Text = GoogleFonts.poppins(
     fontSize: 14,

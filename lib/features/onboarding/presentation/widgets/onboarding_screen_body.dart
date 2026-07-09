@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:wasel_app/core/utils/app_strings.dart';
 import 'package:wasel_app/core/utils/app_images.dart';
-import 'package:wasel_app/features/onboarding/model/onboarding_model.dart';
+import 'package:wasel_app/features/onboarding/data/model/onboarding_model.dart';
 import 'package:wasel_app/features/onboarding/presentation/widgets/boarding_item.dart';
 import 'package:wasel_app/features/onboarding/presentation/widgets/onboarding_actions_section.dart';
 
@@ -56,6 +56,7 @@ class _OnboardingScreenBodyState extends State<OnboardingScreenBody> {
                 } else {
                   isFirst = false;
                 }
+                setState(() {});
               },
               itemBuilder: (context, index) =>
                   BoardingItem(onboardingModel: onboardingList[index]),

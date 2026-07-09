@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wasel_app/config/app_routes.dart';
 import 'package:wasel_app/core/components/custom_text_button.dart';
-import 'package:wasel_app/core/di/di.dart';
 import 'package:wasel_app/core/utils/app_colors.dart';
 import 'package:wasel_app/core/utils/app_strings.dart';
 import 'package:wasel_app/core/utils/app_styles.dart';
@@ -14,23 +13,14 @@ import 'package:wasel_app/features/auth/reset_password/presentation/manager/rese
 import 'package:wasel_app/features/auth/reset_password/presentation/widgets/reset_password_hint_section.dart';
 import 'package:wasel_app/features/auth/reset_password/presentation/widgets/reset_password_text_fields_section.dart';
 
-class ResetPasswordScreenBody extends StatefulWidget {
+class ResetPasswordScreenBody extends StatelessWidget {
   const ResetPasswordScreenBody({super.key});
-
-  @override
-  State<ResetPasswordScreenBody> createState() =>
-      _ResetPasswordScreenBodyState();
-}
-
-class _ResetPasswordScreenBodyState extends State<ResetPasswordScreenBody> {
-  ResetPasswordCubit viewModel = getIt<ResetPasswordCubit>();
 
   @override
   Widget build(BuildContext context) {
     var args =
         ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
     return BlocConsumer<ResetPasswordCubit, ResetPasswordStates>(
-      bloc: viewModel,
       listener: (context, state) {
         if (state is ResetPasswordErrorState) {
           DialogUtils.showAwSomeDialog(
@@ -59,6 +49,9 @@ class _ResetPasswordScreenBodyState extends State<ResetPasswordScreenBody> {
         }
       },
       builder: (context, state) {
+        ResetPasswordCubit viewModel = BlocProvider.of<ResetPasswordCubit>(
+          context,
+        );
         return Padding(
           padding: const EdgeInsets.all(16.0),
           child: Center(

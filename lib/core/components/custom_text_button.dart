@@ -3,10 +3,16 @@ import 'package:wasel_app/core/utils/app_colors.dart';
 import 'package:wasel_app/core/utils/app_styles.dart';
 
 class CustomTextButton extends StatelessWidget {
-  const CustomTextButton({super.key, required this.text, this.onPressed});
+  const CustomTextButton({
+    super.key,
+    required this.text,
+    this.onPressed,
+    this.backgroundColor = AppColors.primaryColor,
+  });
 
   final String text;
   final Function()? onPressed;
+  final Color? backgroundColor;
 
   @override
   Widget build(BuildContext context) {
@@ -14,13 +20,10 @@ class CustomTextButton extends StatelessWidget {
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
         minimumSize: Size(double.infinity, 60),
-        backgroundColor: AppColors.primaryColor,
+        backgroundColor: backgroundColor,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       ),
-      child: Text(
-        text,
-        style: AppStyles.regular24Text,
-      ),
+      child: Text(text, style: AppStyles.regular24Text),
     );
   }
 }

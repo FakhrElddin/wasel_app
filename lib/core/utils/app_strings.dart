@@ -41,6 +41,37 @@ class AppStrings {
   static const String passwordChangedSuccessfullyString = 'Congratulations, Password Changed Successfully';
   static const String btn1String = 'btn1';
   static const String btn2String = 'btn2';
+  static const String categoriesString = 'Categories';
+  static const String booksString = 'Books';
+  static const String myFavoritesString = 'My Favorites';
+  static const String myBooksString = 'My Books';
+  static const String bookPhotosString = 'book photos';
+  static const String bookInformationString = 'book information';
+  static const String priceString = 'Price';
+  static const String egp200String = '200 EGP';
+  static const String usedTimeString = 'Used Time';
+  static const String years2String = '2 years';
+  static const String string1990 = '1990';
+  static const String editionString = 'Edition';
+  static const String bookStateString = 'Book State';
+  static const String bookCategoryString = 'Book Category';
+  static const String coverString = 'Cover';
+  static const String stubString = 'Stub';
+  static const String printingString = 'Printing';
+  static const String publishString = 'Publish';
+  static const String categoryString = 'Category';
+  static const String stateString = 'State';
+  static const String fullNameString = 'Full Name';
+  static const String cardIdString = "Card ID";
+  static const String cityRegionString = "City/Region";
+  static const String bookDetailsString = 'Book Details';
+  static const String bookGalleryString = 'Book Gallery';
+  static const String bookImagesString = 'bookImages';
+  static const String initialIndexString = 'initialIndex';
+  static const String showMoreString = 'Show more';
+  static const String showLessString = 'Show less';
+  static const String timeUsedString = 'Time Used';
+  static const String statusString = 'Status';
 
 
 }
