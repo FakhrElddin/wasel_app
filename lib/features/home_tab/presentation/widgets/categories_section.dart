@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wasel_app/core/utils/app_constants.dart';
 import 'package:wasel_app/core/utils/app_strings.dart';
 import 'package:wasel_app/core/utils/app_styles.dart';
-import 'package:wasel_app/features/home_tab/presentation/widgets/selected_and_unselected_category_card.dart';
+import 'package:wasel_app/features/home_tab/presentation/manager/home_tab_cubit.dart';
+import 'package:wasel_app/features/home_tab/presentation/manager/home_tab_states.dart';
+import 'package:wasel_app/features/home_tab/presentation/widgets/categories_list_view.dart';
+import 'package:wasel_app/features/home_tab/presentation/widgets/category_card_shimmer_list_view.dart';
+import 'package:wasel_app/features/home_tab/presentation/widgets/custom_error_widget.dart';
 
-class CategoriesSection extends StatefulWidget {
+class CategoriesSection extends StatelessWidget {
   const CategoriesSection({super.key});
-
-  @override
-  State<CategoriesSection> createState() => _CategoriesSectionState();
-}
-
-class _CategoriesSectionState extends State<CategoriesSection> {
-  int selectedCategory = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -32,24 +30,19 @@ class _CategoriesSectionState extends State<CategoriesSection> {
           const SizedBox(height: 8),
           SizedBox(
             height: 120,
-            child: ListView.separated(
-              padding: const EdgeInsetsDirectional.symmetric(
-                horizontal: AppConstants.appPadding,
-              ),
-              scrollDirection: Axis.horizontal,
-              physics: const BouncingScrollPhysics(),
-              itemBuilder: (context, index) => GestureDetector(
-                onTap: () {
-                  setState(() {
-                    selectedCategory = index;
-                  });
-                },
-                child: selectedCategory == index
-                    ? SelectedCategoryCard()
-                    : UnSelectedCategoryCard(),
-              ),
-              separatorBuilder: (context, index) => const SizedBox(width: 16),
-              itemCount: 5,
+            child: BlocBuilder<HomeTabCubit, HomeTabStates>(
+              builder: (context, state) {
+                var viewModel = HomeTabCubit.get(context);
+                if (viewModel.categoriesResponse != null) {
+                  return CategoriesListView(
+                    categories: viewModel.categoriesResponse!.data!,
+                  );
+                } else if (state is GetCategoriesFailureState) {
+                  return CustomErrorWidget(error: state.failure.errorMessage);
+                } else {
+                  return CategoryCardShimmerListView();
+                }
+              },
             ),
           ),
         ],

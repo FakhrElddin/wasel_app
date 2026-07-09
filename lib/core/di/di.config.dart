@@ -63,6 +63,16 @@ import '../../features/auth/verify_code/domain/use_cases/verify_code_use_case.da
     as _i109;
 import '../../features/auth/verify_code/presentation/manager/verify_code_cubit.dart'
     as _i40;
+import '../../features/home_tab/data/data_sources/remote_data_source/home_tab_remote_data_source.dart'
+    as _i1067;
+import '../../features/home_tab/data/repositories/home_tab_repository_impl.dart'
+    as _i129;
+import '../../features/home_tab/domain/repositories/home_tab_repository.dart'
+    as _i421;
+import '../../features/home_tab/domain/use_cases/get_categories_use_case.dart'
+    as _i391;
+import '../../features/home_tab/presentation/manager/home_tab_cubit.dart'
+    as _i701;
 import '../api/api_manager.dart' as _i1047;
 
 extension GetItInjectableX on _i174.GetIt {
@@ -99,6 +109,11 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i1052.VerifyCodeRemoteDataSource>(
       () => _i1052.VerifyCodeRemoteDataSourceImpl(
+        apiManager: gh<_i1047.ApiManager>(),
+      ),
+    );
+    gh.factory<_i1067.HomeTabRemoteDataSource>(
+      () => _i1067.HomeTabRemoteDataSourceImpl(
         apiManager: gh<_i1047.ApiManager>(),
       ),
     );
@@ -155,6 +170,11 @@ extension GetItInjectableX on _i174.GetIt {
         resetPasswordRepository: gh<_i606.ResetPasswordRepository>(),
       ),
     );
+    gh.factory<_i421.HomeTabRepository>(
+      () => _i129.HomeTabRepositoryImpl(
+        remoteDataSource: gh<_i1067.HomeTabRemoteDataSource>(),
+      ),
+    );
     gh.factory<_i964.ResetPasswordCubit>(
       () => _i964.ResetPasswordCubit(
         resetPasswordUseCase: gh<_i698.ResetPasswordUseCase>(),
@@ -173,6 +193,16 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i1024.LoginCubit>(
       () => _i1024.LoginCubit(loginUseCase: gh<_i50.LoginUseCase>()),
+    );
+    gh.factory<_i391.GetCategoriesUseCase>(
+      () => _i391.GetCategoriesUseCase(
+        homeTabRepository: gh<_i421.HomeTabRepository>(),
+      ),
+    );
+    gh.factory<_i701.HomeTabCubit>(
+      () => _i701.HomeTabCubit(
+        getCategoriesUseCase: gh<_i391.GetCategoriesUseCase>(),
+      ),
     );
     return this;
   }
