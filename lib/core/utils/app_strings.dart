@@ -72,6 +72,6 @@ class AppStrings {
   static const String showLessString = 'Show less';
   static const String timeUsedString = 'Time Used';
   static const String statusString = 'Status';
-
+  static const String retryString = 'Retry';
 
 }
