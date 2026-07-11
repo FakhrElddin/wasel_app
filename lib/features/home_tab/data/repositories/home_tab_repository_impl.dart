@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:wasel_app/core/errors/failures.dart';
 import 'package:wasel_app/features/home_tab/data/data_sources/remote_data_source/home_tab_remote_data_source.dart';
+import 'package:wasel_app/features/home_tab/domain/entities/books_response_entity.dart';
 import 'package:wasel_app/features/home_tab/domain/entities/categories_response_entity.dart';
 import 'package:wasel_app/features/home_tab/domain/repositories/home_tab_repository.dart';
 
@@ -14,6 +15,12 @@ class HomeTabRepositoryImpl implements HomeTabRepository {
   @override
   Future<Either<Failures, CategoriesResponseEntity>> getCategories() async {
     var either = await remoteDataSource.getCategories();
+    return either.fold((error) => Left(error), (response) => Right(response));
+  }
+
+  @override
+  Future<Either<Failures, BooksResponseEntity>> getBooks() async {
+    var either = await remoteDataSource.getBooks();
     return either.fold((error) => Left(error), (response) => Right(response));
   }
 }
