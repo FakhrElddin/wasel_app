@@ -41,7 +41,7 @@ class BooksDataEntity {
   String? coverImage;
   List<String>? images;
   dynamic category;
-  User? user;
+  BooksUserEntity? user;
   num? usedTime;
   num? edition;
   String? state;
@@ -50,8 +50,8 @@ class BooksDataEntity {
 
 }
 
-class User {
-  User({
+class BooksUserEntity {
+  BooksUserEntity({
       this.id, 
       this.name, 
       this.ratingsAverage, 
@@ -59,13 +59,6 @@ class User {
       this.city, 
   });
 
-  User.fromJson(dynamic json) {
-    id = json['_id'];
-    name = json['name'];
-    ratingsAverage = json['ratingsAverage'];
-    ratingsQuantity = json['ratingsQuantity'];
-    city = json['city'];
-  }
   String? id;
   String? name;
   num? ratingsAverage;
