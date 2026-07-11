@@ -11,6 +11,8 @@ class BooksResponseDm extends BooksResponseEntity{
 
   BooksResponseDm.fromJson(dynamic json) {
     results = json['results'];
+    status = json['status'];
+    message = json['message'];
     paginationResult = json['paginationResult'] != null ? BooksPaginationResultDm.fromJson(json['paginationResult']) : null;
     if (json['data'] != null) {
       data = [];
@@ -66,6 +68,7 @@ class BooksUserDm extends BooksUserEntity{
       super.ratingsAverage,
       super.ratingsQuantity,
       super.city,
+      super.profileImage,
   });
 
   BooksUserDm.fromJson(dynamic json) {
@@ -74,7 +77,7 @@ class BooksUserDm extends BooksUserEntity{
     ratingsAverage = json['ratingsAverage'];
     ratingsQuantity = json['ratingsQuantity'];
     city = json['city'];
-    id = json['id'];
+    profileImage = json['profileImage'];
   }
 
 }

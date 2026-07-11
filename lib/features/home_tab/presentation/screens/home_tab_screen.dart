@@ -10,7 +10,7 @@ class HomeTabScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<HomeTabCubit>(
-      create: (context) => getIt<HomeTabCubit>()..getCategories(),
+      create: (context) => getIt<HomeTabCubit>()..getCategories()..getBooks(),
       child: HomeTabScreenBody(),
     );
   }

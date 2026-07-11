@@ -2,14 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:wasel_app/features/home_tab/domain/entities/categories_response_entity.dart';
+import 'package:wasel_app/features/home_tab/domain/use_cases/get_books_use_case.dart';
 import 'package:wasel_app/features/home_tab/domain/use_cases/get_categories_use_case.dart';
 import 'package:wasel_app/features/home_tab/presentation/manager/home_tab_states.dart';
 
 @injectable
 class HomeTabCubit extends Cubit<HomeTabStates> {
-  HomeTabCubit({required this.getCategoriesUseCase})
-    : super(HomeTabInitialState());
+  HomeTabCubit({
+    required this.getCategoriesUseCase,
+    required this.getBooksUseCase,
+  }) : super(HomeTabInitialState());
+
   GetCategoriesUseCase getCategoriesUseCase;
+  GetBooksUseCase getBooksUseCase;
 
   int selectedCategory = 0;
   CategoriesResponseEntity? categoriesResponse;
@@ -29,8 +34,18 @@ class HomeTabCubit extends Cubit<HomeTabStates> {
     );
   }
 
-  void changeSelectedCategory({required int index}){
+  void changeSelectedCategory({required int index}) {
     selectedCategory = index;
     emit(ChangeSelectedCategoryState());
+  }
+
+  void getBooks() async {
+    emit(GetBooksLoadingState());
+    var either = await getBooksUseCase.invoke();
+    either.fold((failure) => emit(GetBooksFailureState(failure: failure)), (
+      response,
+    ) {
+      emit(GetBooksSuccessState(responseEntity: response));
+    });
   }
 }

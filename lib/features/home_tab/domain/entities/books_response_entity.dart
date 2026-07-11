@@ -57,6 +57,7 @@ class BooksUserEntity {
       this.ratingsAverage, 
       this.ratingsQuantity, 
       this.city, 
+      this.profileImage,
   });
 
   String? id;
@@ -64,6 +65,7 @@ class BooksUserEntity {
   num? ratingsAverage;
   num? ratingsQuantity;
   String? city;
+  String? profileImage;
 
 }
 
