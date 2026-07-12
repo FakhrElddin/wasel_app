@@ -31,11 +31,6 @@ class CategoriesSection extends StatelessWidget {
           SizedBox(
             height: 120,
             child: BlocBuilder<HomeTabCubit, HomeTabStates>(
-              buildWhen: (previous, current) {
-                return current is GetCategoriesSuccessState ||
-                    current is GetCategoriesFailureState ||
-                    current is GetCategoriesLoadingState;
-              },
               builder: (context, state) {
                 var viewModel = HomeTabCubit.get(context);
                 if (viewModel.categoriesResponse != null) {

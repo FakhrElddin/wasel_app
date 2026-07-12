@@ -5,6 +5,7 @@ import 'package:wasel_app/core/utils/app_strings.dart';
 import 'package:wasel_app/core/utils/app_styles.dart';
 import 'package:wasel_app/features/home_tab/presentation/manager/home_tab_cubit.dart';
 import 'package:wasel_app/features/home_tab/presentation/manager/home_tab_states.dart';
+import 'package:wasel_app/features/home_tab/presentation/widgets/book_card_shimmer_grid_view.dart';
 import 'package:wasel_app/features/home_tab/presentation/widgets/books_grid_view.dart';
 import 'package:wasel_app/features/home_tab/presentation/widgets/categories_section.dart';
 import 'package:wasel_app/features/home_tab/presentation/widgets/custom_app_bar.dart';
@@ -59,9 +60,11 @@ class HomeTabScreenBody extends StatelessWidget {
                 child: CustomErrorWidget(error: state.failure.errorMessage),
               );
             } else {
-              return SliverFillRemaining(
-                hasScrollBody: false,
-                child: Center(child: CircularProgressIndicator()),
+              return SliverPadding(
+                padding: const EdgeInsetsDirectional.symmetric(
+                  horizontal: AppConstants.appPadding,
+                ),
+                sliver: BookCardShimmerGridView(),
               );
             }
           },
