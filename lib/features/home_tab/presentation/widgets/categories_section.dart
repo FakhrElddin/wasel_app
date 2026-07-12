@@ -31,6 +31,11 @@ class CategoriesSection extends StatelessWidget {
           SizedBox(
             height: 120,
             child: BlocBuilder<HomeTabCubit, HomeTabStates>(
+              buildWhen: (previous, current) {
+                return current is GetCategoriesSuccessState ||
+                    current is GetCategoriesFailureState ||
+                    current is GetCategoriesLoadingState;
+              },
               builder: (context, state) {
                 var viewModel = HomeTabCubit.get(context);
                 if (viewModel.categoriesResponse != null) {
@@ -38,7 +43,9 @@ class CategoriesSection extends StatelessWidget {
                     categories: viewModel.categoriesResponse!.data!,
                   );
                 } else if (state is GetCategoriesFailureState) {
-                  return CustomErrorWidget(error: state.failure.errorMessage);
+                  return CustomErrorWidget(
+                    error: state.failure.errorMessage,
+                  );
                 } else {
                   return CategoryCardShimmerListView();
                 }

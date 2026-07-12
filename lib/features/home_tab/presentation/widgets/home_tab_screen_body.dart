@@ -39,32 +39,32 @@ class HomeTabScreenBody extends StatelessWidget {
             ),
           ),
         ),
-        SliverPadding(
-          padding: const EdgeInsetsDirectional.symmetric(
-            horizontal: AppConstants.appPadding,
-          ),
-          sliver: BlocBuilder<HomeTabCubit, HomeTabStates>(
-            buildWhen: (previous, current) {
-              return current is GetBooksSuccessState ||
-                  current is GetBooksFailureState ||
-                  current is GetBooksLoadingState;
-            },
-            builder: (context, state) {
-              if (state is GetBooksSuccessState) {
-                return BooksGridView(books: state.responseEntity.data!);
-              } else if (state is GetBooksFailureState) {
-                return SliverFillRemaining(
-                  hasScrollBody: false,
-                  child: CustomErrorWidget(error: state.failure.errorMessage),
-                );
-              } else {
-                return SliverFillRemaining(
-                  hasScrollBody: false,
-                  child: Center(child: CircularProgressIndicator()),
-                );
-              }
-            },
-          ),
+        BlocBuilder<HomeTabCubit, HomeTabStates>(
+          buildWhen: (previous, current) {
+            return current is GetBooksSuccessState ||
+                current is GetBooksFailureState ||
+                current is GetBooksLoadingState;
+          },
+          builder: (context, state) {
+            if (state is GetBooksSuccessState) {
+              return SliverPadding(
+                padding: const EdgeInsetsDirectional.symmetric(
+                  horizontal: AppConstants.appPadding,
+                ),
+                sliver: BooksGridView(books: state.responseEntity.data!),
+              );
+            } else if (state is GetBooksFailureState) {
+              return SliverFillRemaining(
+                hasScrollBody: false,
+                child: CustomErrorWidget(error: state.failure.errorMessage),
+              );
+            } else {
+              return SliverFillRemaining(
+                hasScrollBody: false,
+                child: Center(child: CircularProgressIndicator()),
+              );
+            }
+          },
         ),
         SliverToBoxAdapter(child: SizedBox(height: 100)),
       ],
