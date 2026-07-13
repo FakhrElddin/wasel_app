@@ -4,6 +4,7 @@ import 'package:wasel_app/core/utils/app_colors.dart';
 import 'package:wasel_app/core/utils/app_constants.dart';
 import 'package:wasel_app/core/utils/app_strings.dart';
 import 'package:wasel_app/core/utils/app_styles.dart';
+import 'package:wasel_app/features/home_tab/domain/entities/books_response_entity.dart';
 import 'package:wasel_app/features/home_tab/presentation/widgets/book_details_screen_app_bar.dart';
 import 'package:wasel_app/features/home_tab/presentation/widgets/book_gallery_section.dart';
 import 'package:readmore/readmore.dart';
@@ -14,6 +15,8 @@ class BookDetailsScreenBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    BooksDataEntity book =
+        ModalRoute.of(context)!.settings.arguments as BooksDataEntity;
     return Column(
       children: [
         Expanded(
@@ -21,7 +24,14 @@ class BookDetailsScreenBody extends StatelessWidget {
             slivers: [
               BookDetailsScreenAppBar(),
               SliverToBoxAdapter(child: SizedBox(height: 16)),
-              SliverToBoxAdapter(child: BookGallerySection()),
+              SliverToBoxAdapter(
+                child: BookGallerySection(
+                  bookImages: [
+                    book.coverImage!,
+                    ...book.images!,
+                  ],
+                ),
+              ),
               SliverToBoxAdapter(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(
@@ -29,7 +39,7 @@ class BookDetailsScreenBody extends StatelessWidget {
                     vertical: 24,
                   ),
                   child: ReadMoreText(
-                    'Die Protestantische Ethik Und Der Geist Des Kapitalismus Die Protestantische Ethik Und Der Geist Des Kapitalismus ',
+                    book.title!,
                     style: AppStyles.bold20Text,
                     trimMode: TrimMode.Line,
                     trimLines: 2,
@@ -46,27 +56,23 @@ class BookDetailsScreenBody extends StatelessWidget {
               ),
               SliverToBoxAdapter(
                 child: BookInfoSection(
-                  editionValue: '2002',
-                  categoryValue: 'Political Science',
-                  timeUsedValue: '3 Years',
-                  priceValue: '250',
-                  statusValue: 'Like New',
+                  editionValue: book.edition.toString(),
+                  categoryValue: book.category.toString(),
+                  timeUsedValue: '${book.usedTime.toString()} Years',
+                  priceValue: book.price.toString(),
+                  statusValue: book.state!,
                 ),
               ),
             ],
           ),
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: AppConstants.appPadding),
-          child: CustomTextButton(
-            text: 'Order Now',
-            onPressed: () {},
+          padding: const EdgeInsets.symmetric(
+            horizontal: AppConstants.appPadding,
           ),
+          child: CustomTextButton(text: 'Order Now', onPressed: () {}),
         ),
-        SafeArea(
-          top: false,
-          child: SizedBox(),
-        ),
+        SafeArea(top: false, child: SizedBox()),
       ],
     );
   }

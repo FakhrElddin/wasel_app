@@ -6,18 +6,20 @@ import 'package:wasel_app/core/utils/app_colors.dart';
 import 'package:wasel_app/core/utils/app_strings.dart';
 
 class BookGallerySection extends StatefulWidget {
-  const BookGallerySection({super.key});
+  const BookGallerySection({super.key, required this.bookImages});
+
+  final List<String> bookImages;
 
   @override
   State<BookGallerySection> createState() => _BookGallerySectionState();
 }
 
 class _BookGallerySectionState extends State<BookGallerySection> {
-  final List<String> bookImages = const [
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5BzJ80DaKE77ahFfnwsttMG3I2ouue8C6gg&s',
-    'https://as1.ftcdn.net/jpg/03/89/07/14/1000_F_389071495_EXbWden6z83WkqXyz6yyCya7uNzyc70h.webp',
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLGjFrAFp9Tyy2t71CoFgogvaUZivqrAaU-CJAfTS3FxYVgbykVX8i5QM&s',
-  ];
+  // final List<String> bookImages = const [
+  //   'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5BzJ80DaKE77ahFfnwsttMG3I2ouue8C6gg&s',
+  //   'https://as1.ftcdn.net/jpg/03/89/07/14/1000_F_389071495_EXbWden6z83WkqXyz6yyCya7uNzyc70h.webp',
+  //   'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLGjFrAFp9Tyy2t71CoFgogvaUZivqrAaU-CJAfTS3FxYVgbykVX8i5QM&s',
+  // ];
   PageController bookImagesController = PageController();
 
   @override
@@ -32,12 +34,12 @@ class _BookGallerySectionState extends State<BookGallerySection> {
             itemBuilder: (context, index) => Center(
               child: InkWell(
                 onTap: () {
-                  navigateToGallery(index: index, bookImages: bookImages);
+                  navigateToGallery(index: index, bookImages: widget.bookImages);
                 },
                 child: CachedNetworkImage(
                   height: 300,
                   fit: BoxFit.fill,
-                  imageUrl: bookImages[index],
+                  imageUrl: widget.bookImages[index],
                   placeholder: (context, url) =>
                       Center(child: CircularProgressIndicator()),
                   errorWidget: (context, url, error) =>
@@ -45,13 +47,13 @@ class _BookGallerySectionState extends State<BookGallerySection> {
                 ),
               ),
             ),
-            itemCount: bookImages.length,
+            itemCount: widget.bookImages.length,
           ),
         ),
         const SizedBox(height: 16),
         SmoothPageIndicator(
           controller: bookImagesController,
-          count: bookImages.length,
+          count: widget.bookImages.length,
           effect: const ExpandingDotsEffect(
             activeDotColor: AppColors.primaryColor,
             dotWidth: 10,

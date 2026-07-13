@@ -38,7 +38,9 @@ class CategoriesSection extends StatelessWidget {
                     categories: viewModel.categoriesResponse!.data!,
                   );
                 } else if (state is GetCategoriesFailureState) {
-                  return CustomErrorWidget(error: state.failure.errorMessage);
+                  return CustomErrorWidget(
+                    error: state.failure.errorMessage,
+                  );
                 } else {
                   return CategoryCardShimmerListView();
                 }

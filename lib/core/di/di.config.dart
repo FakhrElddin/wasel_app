@@ -69,6 +69,8 @@ import '../../features/home_tab/data/repositories/home_tab_repository_impl.dart'
     as _i129;
 import '../../features/home_tab/domain/repositories/home_tab_repository.dart'
     as _i421;
+import '../../features/home_tab/domain/use_cases/get_books_use_case.dart'
+    as _i803;
 import '../../features/home_tab/domain/use_cases/get_categories_use_case.dart'
     as _i391;
 import '../../features/home_tab/presentation/manager/home_tab_cubit.dart'
@@ -194,6 +196,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i1024.LoginCubit>(
       () => _i1024.LoginCubit(loginUseCase: gh<_i50.LoginUseCase>()),
     );
+    gh.factory<_i803.GetBooksUseCase>(
+      () => _i803.GetBooksUseCase(
+        homeTabRepository: gh<_i421.HomeTabRepository>(),
+      ),
+    );
     gh.factory<_i391.GetCategoriesUseCase>(
       () => _i391.GetCategoriesUseCase(
         homeTabRepository: gh<_i421.HomeTabRepository>(),
@@ -202,6 +209,7 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i701.HomeTabCubit>(
       () => _i701.HomeTabCubit(
         getCategoriesUseCase: gh<_i391.GetCategoriesUseCase>(),
+        getBooksUseCase: gh<_i803.GetBooksUseCase>(),
       ),
     );
     return this;
