@@ -1,17 +1,23 @@
-# wasel_app
+# 📚 Wasel App (Under Development)
 
-A new Flutter project.
+**Wasel (واصل)** is a peer-to-peer mobile application built with **Flutter** for buying, selling, and exchanging used books.
 
-## Getting Started
+⚠️ **Important Note for Reviewers:**  
+The project is actively being developed on the **`development`** branch. Please switch to it to review the full source code, architecture, and features.
 
-This project is a starting point for a Flutter application.
+---
 
-A few resources to get you started if this is your first Flutter project:
+### 🔍 Explore the Source Code
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+[![Git Branch](https://img.shields.io/badge/Current_Active_Branch-development-orange?style=for-the-badge&logo=git&logoColor=white)](https://github.com/FakhrElddin/wasel_app/tree/development)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+👉 **[Click here to view the Development Branch directly](https://github.com/FakhrElddin/wasel_app/tree/development)**
+
+---
+
+### 🏗️ Tech Stack & Architecture
+* **Framework:** Flutter & Dart
+* **Architecture:** Clean Architecture (Data, Domain, Presentation)
+* **State Management:** BLoC / Cubit
+* **Dependency Injection:** GetIt & Injectable
+* **Networking:** Dio & Dartz (Functional Error Handling)
