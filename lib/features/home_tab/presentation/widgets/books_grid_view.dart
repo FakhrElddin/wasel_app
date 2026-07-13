@@ -20,11 +20,13 @@ class BooksGridView extends StatelessWidget {
       ),
       itemBuilder: (context, index) => InkWell(
         onTap: () {
-          Navigator.pushNamed(context, AppRoutes.bookDetailsScreenRoute);
+          Navigator.pushNamed(
+            context,
+            AppRoutes.bookDetailsScreenRoute,
+            arguments: books[index],
+          );
         },
-        child: BookCard(
-          book: books[index],
-        ),
+        child: BookCard(book: books[index]),
       ),
     );
   }
